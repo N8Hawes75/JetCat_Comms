@@ -1,18 +1,25 @@
 from cffi import FFI
 
+
+ffibuilder = FFI()
+ffibuilder.cdef("float pi_approx(int n);")
+ffibuilder.cdef("uint16_t crc16_update ( uint16_t crc, uint8_t data );")
+ffibuilder.cdef("uint16_t get_crc16z(uint8_t *p, uint16_t len);")
+
+ffibuilder.set_source("_crc",  # name of the output C extension
+                        """
+                            #include "crc.h" // the C header of the library
+                        """,
+                        sources=['crc.c'],  # includes pi.c as additional sources
+                        libraries=['m'])  # on Unix, link with the math library
+
+
+
+
+
+
 if __name__ == '__main__':
     #run this once
-    ffibuilder = FFI()
-    ffibuilder.cdef("float pi_approx(int n);")
-    ffibuilder.cdef("uint16_t crc16_update ( uint16_t crc, uint8_t data );")
-    ffibuilder.cdef("uint16_t get_crc16z(uint8_t *p, uint16_t len);")
-
-    ffibuilder.set_source("_crc",  # name of the output C extension
-                          """
-                              #include "crc.h"
-                          """,
-                          sources=['crc.c'],  # includes pi.c as additional sources
-                          libraries=['m'])  # on Unix, link with the math library
     ffibuilder.compile(verbose=True)
 
 

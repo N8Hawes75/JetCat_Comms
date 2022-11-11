@@ -567,8 +567,8 @@ static void (*_cffi_call_python_org)(struct _cffi_externpy_s *, char *);
 /************************************************************/
 
 
-                              #include "crc.h"
-                          
+                            #include "crc.h" // the C header of the library
+                        
 
 /************************************************************/
 
