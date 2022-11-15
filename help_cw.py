@@ -93,9 +93,8 @@ def decode_bytes(bytes):
 
         #Two 7E's in a row, NEW PACKET, read until another 7E
         if(bytes[i]==0x7E and bytes[i+1]==0x7E):
-            i = i + 2
             j = 0
-            while(bytes[i+j]!=0x7E and i+j+1!=len(bytes)-1):
+            while(i+j+1<len(bytes)-1 and bytes[i+j+2]!=0x7E):
                 j = j + 1
             print("i: ", i, "j: ", j)
             data_packet = bytes[i:(i+j)]
@@ -105,8 +104,9 @@ def decode_bytes(bytes):
                 decode = decode_line(data_packet)
                 print(decode)
 
-
-
+def unpack_bytes(bytes):
+    unpack_format = ""
+    unpackaged1 = struct.unpack("", bytes)
 
 def save_fig(fig_id, folder_descrip , tight_layout=True,\
     fig_extension="png", resolution=600):

@@ -48,5 +48,4 @@ with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=2) as ser, \
 
 
 
-
 print("Done")
