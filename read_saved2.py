@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import datetime
 from cffi import FFI
@@ -9,7 +11,7 @@ from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()
 
-file_name = r"data/2022-11-10 115200 putty.log"
+file_name = r"data/2022-11-15/2022-11-15_11:45:06_read_port"
 folder_input = input("Enter description for image folder: ")
 
 with open(file_name, 'rb',) as file:
@@ -74,13 +76,6 @@ data_columns = ["Engine Address", "Message Descriptor", "Sequence Number",
 "Airspeed", "PWM-THR", "PWM-AUX","CRC16_Given","CRC16_Calculated"]
 frame = pd.DataFrame(list_of_list, columns=data_columns)
 
-# Plots
-frame.plot()
-help_cw.save_fig("all_data", folder_input)
-for col in frame.columns:
-    frame.plot(y=col, use_index=True, style='o')
-    help_cw.save_fig(col, folder_input)
-
 is_crc_equal = np.zeros((len(frame),1))
 for i in range(len(frame)):
     if frame.iloc[i]["CRC16_Given"] == frame.iloc[i]["CRC16_Calculated"]:
@@ -88,7 +83,16 @@ for i in range(len(frame)):
     else:
         is_crc_equal[i] = False
 
+
+# Plots
+frame.plot()
+help_cw.save_fig("all_data", folder_input)
+for col in frame.columns:
+    frame.plot(y=col, use_index=True, style='o')
+    help_cw.save_fig(col, folder_input)
+
+
 plt.figure()
 plt.plot(frame.index, is_crc_equal)
-plt.show()
 help_cw.save_fig("is_equal", folder_input)
+plt.show()
