@@ -77,10 +77,6 @@ def byte_unstuffing(byte_array):
 
     return byte_array
 
-def count_clip_unstuffed():
-    """
-    """
-
 def check_crcs(decoded_numbers):
     if (decoded_numbers[len(decoded_numbers)-2] == \
         decoded_numbers[len(decoded_numbers)-1]):
@@ -88,15 +84,40 @@ def check_crcs(decoded_numbers):
     else:
         print("CRC's are NOT equal")
 
+def decode_bytes(bytes):
+    """
+    Take 100 or so bytes & build numpy array of usable data
+    """
+    decoded_numbers = np.zeros((1,10))
+    for i in range(len(bytes)):
 
-def save_fig(fig_id, folder_descrip , tight_layout=True, fig_extension="png", resolution=600):
+        #Two 7E's in a row, NEW PACKET, read until another 7E
+        if(bytes[i]==0x7E and bytes[i+1]==0x7E):
+            i = i + 2
+            j = 0
+            while(bytes[i+j]!=0x7E and i+j+1!=len(bytes)-1):
+                j = j + 1
+            print("i: ", i, "j: ", j)
+            data_packet = bytes[i:(i+j)]
+            print(data_packet)
+            if(j >= 33):
+                #Successfull read of packet...
+                decode = decode_line(data_packet)
+                print(decode)
+
+
+
+
+def save_fig(fig_id, folder_descrip , tight_layout=True,\
+    fig_extension="png", resolution=600):
 
     now = datetime.datetime.today()
     now = now.strftime("%Y-%m-%d")
     IMAGES_PATH = os.path.join(".", "images", now, folder_descrip)
     os.makedirs(IMAGES_PATH, exist_ok=True)
     fig_id = now + " " + fig_id
-    path = os.path.join(IMAGES_PATH, fig_id + " " + folder_descrip + "." + fig_extension)
+    path = os.path.join(IMAGES_PATH, fig_id + " " +\
+         folder_descrip + "." + fig_extension)
     print("Saving figure", fig_id)
     if tight_layout:
         plt.tight_layout()
@@ -120,44 +141,3 @@ def write_txt(filename, bytes_var):
 
 
 
-
-
-
-
-
-
-
-# def byte_array_to_string(byte_array):
-#     # Convert byte array to a string so it can go into crc16 calculation
-
-# def get_crc16(byte_array):
-#     # Cut off the extra zeros in the byte_array, as well as the n-2 bytes sent
-#     # The CRC calculation does not use the last two bytes, those contain the 
-#     # CRC value!
-#     #new_array = byte_array[:31]
-
-#     length = len(byte_array)
-#     crc_16_data = 0
-#     print("Length of byte_array: ", length)
-#     i = 0
-
-#     while(length):
-
-#         data = byte_array[i]
-#         print("i: ", i, "data: ", data)
-#         crc_16_data = crc16_update(crc_16_data, data)
-#         print("crc_16_data: ", crc_16_data)
-#         i = i + 1
-#         length = length - 1
-#     return crc_16_data
-
-# def crc16_update(crc, data):
-#     b8_crc = crc & 0xFF
-
-#     data = data ^ (b8_crc & 0xFF)
-#     print("data1: ", data)
-#     data = data ^ (data << 4)
-#     print("data2: ", data)
-#     ret_val = ((data<<8) | ((crc&0xFF00)>>8)) ^ (data>>4) ^ (data<<3)
-#     print("ret_val: ", ret_val)
-#     return ret_val

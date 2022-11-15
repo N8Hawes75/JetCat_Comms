@@ -76,6 +76,7 @@ data_columns = ["Engine Address", "Message Descriptor", "Sequence Number",
 "Airspeed", "PWM-THR", "PWM-AUX","CRC16_Given","CRC16_Calculated"]
 frame = pd.DataFrame(list_of_list, columns=data_columns)
 
+# Check if the given CRC == calculated CRC
 is_crc_equal = np.zeros((len(frame),1))
 for i in range(len(frame)):
     if frame.iloc[i]["CRC16_Given"] == frame.iloc[i]["CRC16_Calculated"]:
