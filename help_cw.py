@@ -95,14 +95,15 @@ def save_fig(fig_id, folder_descrip , tight_layout=True, fig_extension="png", re
     now = now.strftime("%Y-%m-%d")
     IMAGES_PATH = os.path.join(".", "images", now, folder_descrip)
     os.makedirs(IMAGES_PATH, exist_ok=True)
-    now = datetime.datetime.today()
-    now = now.strftime("%Y-%m-%d")
     fig_id = now + " " + fig_id
     path = os.path.join(IMAGES_PATH, fig_id + " " + folder_descrip + "." + fig_extension)
     print("Saving figure", fig_id)
     if tight_layout:
         plt.tight_layout()
     plt.savefig(path, format=fig_extension, dpi=resolution)
+
+def write_txt():
+    
 
 # def byte_array_to_string(byte_array):
 #     # Convert byte array to a string so it can go into crc16 calculation

@@ -9,7 +9,7 @@ from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()
 
-file_name = r"data/2022-11-09 Spool2 putty.log"
+file_name = r"data/2022-11-10 115200 putty.log"
 folder_input = input("Enter description for image folder: ")
 
 with open(file_name, 'rb',) as file:
