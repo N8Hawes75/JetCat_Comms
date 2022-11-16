@@ -89,7 +89,7 @@ def decode_bytes(bytes):
     Take 100 or so bytes & build numpy array of usable data
     """
     decoded_numbers = np.zeros((1,10))
-    for i in range(len(bytes)):
+    for i in range(len(bytes)-30):
 
         #Two 7E's in a row, NEW PACKET, read until another 7E
         if(bytes[i]==0x7E and bytes[i+1]==0x7E):
@@ -105,8 +105,9 @@ def decode_bytes(bytes):
                 print(decode)
 
 def unpack_bytes(bytes):
-    unpack_format = ""
-    unpackaged1 = struct.unpack("", bytes)
+    unpack_format = ">BHBB HHHHHHHBHBHHHH H"
+    unpackaged1 = struct.unpack(unpack_format, bytes)
+    print(unpackaged1)
 
 def save_fig(fig_id, folder_descrip , tight_layout=True,\
     fig_extension="png", resolution=600):
