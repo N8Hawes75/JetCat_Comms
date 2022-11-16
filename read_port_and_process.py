@@ -59,7 +59,7 @@ with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=2) as ser, \
         rpm=np.append(rpm, unstuffed[7])
         # Set up plot to call animate() function periodically
         ani = animation.FuncAnimation(fig,\
-            partial(cw_helper2.animate),frames=, interval=10)
+            partial(cw_helper2.animate),frames=ticks, interval=10)
         plt.show()
 
 
