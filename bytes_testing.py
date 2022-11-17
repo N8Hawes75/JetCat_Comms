@@ -28,9 +28,10 @@ import cw_helper2
 
 bytes1 = b'\x7d\x5D\x05\xF3\xEE\x7D\x5D\x00\x02\xFF\x7D\x5D'
 unstuff = cw_helper2.byte_unstuffing(bytes1)
-print(unstuff)
+print(unstuff, '\n\n')
 
 tuple1 = (1,2,3,4,5)
 print(tuple1)
 print(tuple1[2])
 print(__name__)
+
