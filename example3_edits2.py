@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import struct
 import pandas as pd
+import cw_helper2
 
 
 class serialPlot:
@@ -23,6 +24,7 @@ class serialPlot:
         self.thread = None
         self.plotTimer = 0
         self.previousTimer = 0
+        self.newDataRecieved = False
         # self.csvData = []
 
         print('Trying to connect to: ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
@@ -34,7 +36,7 @@ class serialPlot:
 
     def readSerialStart(self):
         if self.thread == None:
-            self.thread = Thread(target=self.backgroundThread)
+            self.thread = Thread(target=self.backgroundThread2)
             self.thread.start()
             # Block till we start receiving values
             while self.isReceiving != True:
@@ -44,15 +46,23 @@ class serialPlot:
         currentTimer = time.perf_counter()
         self.plotTimer = int((currentTimer - self.previousTimer) * 1000)     # the first reading will be erroneous
         self.previousTimer = currentTimer
-        print("Attempt getSerialData")
-        timeText.set_text('Plot Interval = ' + str(self.plotTimer) + 'ms')
-        values  = struct.unpack('>BHBB HHHHHHHBHBHHHH H', self.rawData)    # use 'h' for a 2 byte integer
-        print("cw values: ", values)
-        value = values[7]
-        self.data.append(value)    # we get the latest data point and append it to our array
-        lines.set_data(range(self.plotMaxLength), self.data)
-        lineValueText.set_text('[' + lineLabel + '] = ' + str(value))
-        # self.csvData.append(self.data[-1])
+        print(self.newDataRecieved)
+        if (self.newDataRecieved):
+            print("Attempt getSerialData")
+            print("cw getSerialData self.rawData: ", self.rawData)
+            self.rawData = self.rawData[0:len(self.rawData)-2]
+            self.newDataRecieved = False
+            self.rawData = cw_helper2.byte_unstuffing(self.rawData)
+            print("cw getSerialData self.rawData: ", self.rawData)
+            timeText.set_text('Plot Interval = ' + str(self.plotTimer) + 'ms')
+            values  = struct.unpack('>BHBB HHHHHHHBHBHHHH H', self.rawData)    # use 'h' for a 2 byte integer
+            print("cw values: ", values)
+            value = values[6]
+            self.data.append(value)    # we get the latest data point and append it to our array
+            print("self.data:\n",self.data)
+            lines.set_data(range(self.plotMaxLength), self.data)
+            lineValueText.set_text('[' + lineLabel + '] = ' + str(value))
+            # self.csvData.append(self.data[-1])
 
     def backgroundThread(self):    # retrieve data
         time.sleep(1.0)  # give some buffer time for retrieving data
@@ -65,6 +75,17 @@ class serialPlot:
             # print("cw len(x)", len(x))
             self.isReceiving = True
             #print(self.rawData)
+
+    def backgroundThread2(self):    # retrieve data
+        time.sleep(1.0)  # give some buffer time for retrieving data
+        self.serialConnection.reset_input_buffer()
+        while (self.isRun):
+            x = self.serialConnection.read_until(b'\x7E\x7E')
+            # print("cw thread x: ", x)
+            self.rawData = x
+            # print("cw thread self.rawData: ", self.rawData) # This print should be removed when finished
+            self.isReceiving = True
+            self.newDataRecieved = True
 
     def close(self):
         self.isRun = False
@@ -90,7 +111,7 @@ def main():
     xmax = maxPlotLength
     ymin = -(1)
     ymax = 1000
-    fig = plt.figure()
+    fig = plt.figure(4)
     ax = plt.axes(xlim=(xmin, xmax), ylim=(float(ymin - (ymax - ymin) / 10), float(ymax + (ymax - ymin) / 10)))
     ax.set_title('Arduino Analog Read')
     ax.set_xlabel("time")

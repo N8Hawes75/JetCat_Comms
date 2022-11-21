@@ -17,23 +17,31 @@ def byte_unstuffing(bytes1):
     """
     # TODO: Test this function. If it does not work, engine data will become
     # corrupted.
-
+    byte_array = bytearray(bytes1)
     for i in range(len(bytes1)-2):
 
         # "If 0x7D should be transmitted, transmit two bytes: 0x7D and 0x5D"
         # This is from JetCat documentation
-        byte_array = bytearray(bytes1)
         if(byte_array[i]==0x7D and byte_array[i+1]==0x5D):
             # Delete the extra byte
             del byte_array[i+1]
+            # Append so that byte_array does not lose length. Code will
+            # fail if this is not done.
+            byte_array.append(0x00)
 
         # "If 0x7E should be transmitted, transmit two bytes: 0x7D and 0x5E"
         # This is from JetCat documentation
-        if(byte_array[i]==0x7D and byte_array[i+1]==0x5E):
+        if(byte_array[i]==0x7D
+            and byte_array[i+1]==0x5E):
             # Replace two bytes with 0x7E
             byte_array[i] = 0x7E
             del byte_array[i+1]
-    
+            byte_array.append(0x00)
+
+    # Bytes are unstuffed, but there is extra length from the appends. Appends
+    # cannot be removed or it will break the for loop, so now that we are
+    # done unstuffing lets just shorten the bytearray to the correct length
+    byte_array = byte_array[0:33]
     return byte_array
 
 def unpack_bytes(bytes):
