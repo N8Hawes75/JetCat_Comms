@@ -78,8 +78,6 @@ def make_txt_file():
     return filename
 
 
-
-
 # Create figure for plotting
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)

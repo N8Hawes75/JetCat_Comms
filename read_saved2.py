@@ -5,13 +5,15 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import datetime
 from cffi import FFI
+import os
 
 import help_cw
+import cw_helper2
 from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()
 
-file_name = r"data/2022-11-15/2022-11-15_11:45:06_read_port"
+file_name = r"/home/colton/Documents/Python_Projects/JetCat_Comms/data/2022-11-22/2022-11-22_16:34:08_read_port"
 folder_input = input("Enter description for image folder: ")
 
 with open(file_name, 'rb',) as file:
@@ -96,4 +98,18 @@ for col in frame.columns:
 plt.figure()
 plt.plot(frame.index, is_crc_equal)
 help_cw.save_fig("is_equal", folder_input)
+
+# Save the data frame to a text file
+now = datetime.datetime.today()
+now = now.strftime("%Y-%m-%d")
+now_more = datetime.datetime.today()
+now_more = now_more.strftime("%Y-%m-%d_%H:%M:%S")
+FILE_PATH = os.path.join(".", "decoded_data", now )
+
+os.makedirs(FILE_PATH, exist_ok=True)
+frame.to_csv(os.path.join(FILE_PATH, now_more+"_decoded_data.csv"))
+
+
+
 plt.show()
+
