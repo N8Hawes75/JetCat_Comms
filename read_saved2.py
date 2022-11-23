@@ -24,7 +24,7 @@ list_of_list = []
 data_packet = bytearray(80) # initialize byte array with 40 values
 clipped_unstuffed_line = bytearray()
 count = 0
-for i in range(200, len(my_bytes)-100): # Skip putty header and last bytes
+for i in range(0, len(my_bytes)-100): # Skip putty header and last bytes
     if (my_bytes[i] == 0x7E and my_bytes[i+1] == 0x7E):
         # Two 7E in a row, new data packet starts at i+1
         j = 0
@@ -109,7 +109,4 @@ FILE_PATH = os.path.join(".", "decoded_data", now )
 os.makedirs(FILE_PATH, exist_ok=True)
 frame.to_csv(os.path.join(FILE_PATH, now_more+"_decoded_data.csv"))
 
-
-
 plt.show()
-
