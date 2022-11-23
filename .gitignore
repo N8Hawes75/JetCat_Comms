@@ -1,1 +1,6 @@
+# Don't send my virtual environment, vscode settings, or
+# compiled code to github.
+
 .venv
+.vscode
+*.o
