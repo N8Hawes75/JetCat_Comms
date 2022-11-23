@@ -34,6 +34,7 @@ time_to_end = datetime.datetime.today().timestamp() + 60*time_to_read
 # back on a frequent basis. By this the host can easily verify that messages
 # are decoded and passing through the ECU"
 
+# Start signal
 header_data = b'\x01\x01\x01\x01\x02\x00\x01'
 header_data_c = ffibuilder.new("char[]", header_data)
 print(len(header_data))
@@ -42,10 +43,12 @@ crc16_calc_hex = crc16_calculation.to_bytes(2, 'big')
 print("crc: ", crc16_calculation)
 print(type(crc16_calculation))
 print("crc hex: ", crc16_calc_hex)
+crc16_calc_hex = b'\x76\x66' # Does engine still start if CRC is wrong???
 packet = b'\x7E'+header_data+crc16_calc_hex+b'\x7E'
 print(packet)
 
-header_data2 = b'\x01\x01\x0D\x02\x02\x03\x01'
+# data messages signal
+header_data2 = b'\x01\x01\x0D\x02\x02\x01\x00'
 header_data2_c = ffibuilder.new("char[]", header_data2)
 print(len(header_data2))
 crc16_calculation2 = get_crc16z(header_data2_c, len(header_data2_c)-1)
