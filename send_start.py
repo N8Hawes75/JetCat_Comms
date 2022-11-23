@@ -43,12 +43,12 @@ crc16_calc_hex = crc16_calculation.to_bytes(2, 'big')
 print("crc: ", crc16_calculation)
 print(type(crc16_calculation))
 print("crc hex: ", crc16_calc_hex)
-crc16_calc_hex = b'\x76\x66' # Does engine still start if CRC is wrong???
+# crc16_calc_hex = b'\x76\x66' # Does engine still start if CRC is wrong???
 packet = b'\x7E'+header_data+crc16_calc_hex+b'\x7E'
 print(packet)
 
 # data messages signal
-header_data2 = b'\x01\x01\x0D\x02\x02\x01\x00'
+header_data2 = b'\x01\x01\x0D\x02\x02\x05\x01'
 header_data2_c = ffibuilder.new("char[]", header_data2)
 print(len(header_data2))
 crc16_calculation2 = get_crc16z(header_data2_c, len(header_data2_c)-1)
@@ -59,6 +59,18 @@ print("crc2 hex: ", crc16_calc_hex2)
 packet2 = b'\x7E'+header_data2+crc16_calc_hex2+b'\x7E'
 print(packet2)
 
+# data messages signal
+header_data3 = b'\x01\x01\x0D\x03\x02\x01\x00'
+header_data3_c = ffibuilder.new("char[]", header_data3)
+print(len(header_data3))
+crc16_calculation3 = get_crc16z(header_data3_c, len(header_data3_c)-1)
+crc16_calc_hex3 = crc16_calculation3.to_bytes(2, 'big')
+print("crc2: ", crc16_calculation3)
+print(type(crc16_calculation3))
+print("crc2 hex: ", crc16_calc_hex3)
+packet3 = b'\x7E'+header_data3+crc16_calc_hex3+b'\x7E'
+print(packet3)
+
 with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=2) as ser, \
     open(filename, 'ab') as file:
 
@@ -66,7 +78,9 @@ with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=2) as ser, \
     a_data_packet = ser.read(100)
     file.write(a_data_packet)
     ser.write(packet2)
-
+    a_data_packet = ser.read(100)
+    file.write(a_data_packet)
+    ser.write(packet3)
 
     time_to_end = datetime.datetime.today().timestamp() + 60*time_to_read
 
