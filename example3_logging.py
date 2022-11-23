@@ -113,7 +113,6 @@ class serialPlot:
         # df = pd.DataFrame(self.csvData)
         # df.to_csv('/home/rikisenia/Desktop/data.csv')
 
-
 def main():
     # portName = 'COM5'     # for windows users
     portName = '/dev/ttyUSB0'
