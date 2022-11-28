@@ -80,6 +80,9 @@ class serialPlot:
             lines.set_data(range(self.plotMaxLength), self.data)
             lineValueText.set_text('[' + lineLabel + '] = ' + str(value))
             # self.csvData.append(self.data[-1])
+            if (len(self.data)>500):
+                self.data.popleft()
+
 
     def backgroundThread(self):    # retrieve data
         time.sleep(1.0)  # give some buffer time for retrieving data
