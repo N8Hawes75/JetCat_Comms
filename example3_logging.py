@@ -83,7 +83,6 @@ class serialPlot:
             if (len(self.data)>500):
                 self.data.popleft()
 
-
     def backgroundThread(self):    # retrieve data
         time.sleep(1.0)  # give some buffer time for retrieving data
         self.serialConnection.reset_input_buffer()
@@ -150,9 +149,9 @@ def main():
     now_more = now_more.strftime("%Y-%m-%d_%H:%M:%S")
     FILE_PATH = os.path.join(".", "anims", now_more )
     os.makedirs(FILE_PATH, exist_ok=True)
-    videofile = os.path.join(FILE_PATH, (now_more + "_anim"))
-    vidwriter = anim.FFMpegWriter(fps=60)
-    anim.save(videofile, vidwriter)
+    videofile = os.path.join(FILE_PATH, (now_more + "_anim.mp4"))
+    vidwriter = animation.FFMpegWriter(fps=60)
+    anim.save(videofile)
     s.close()
 
 
