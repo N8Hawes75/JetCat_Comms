@@ -146,6 +146,13 @@ def main():
     plt.legend(loc="upper left")
     plt.show()
 
+    now_more = datetime.datetime.today()
+    now_more = now_more.strftime("%Y-%m-%d_%H:%M:%S")
+    FILE_PATH = os.path.join(".", "anims", now_more )
+    os.makedirs(FILE_PATH, exist_ok=True)
+    videofile = os.path.join(FILE_PATH, (now_more + "_anim"))
+    vidwriter = anim.FFMpegWriter(fps=60)
+    anim.save(videofile, vidwriter)
     s.close()
 
 
