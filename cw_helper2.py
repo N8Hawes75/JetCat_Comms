@@ -9,6 +9,7 @@ from matplotlib import style
 import numpy as np
 import random
 import serial
+from cffi import FFI
 
 def byte_unstuffing(bytes1):
     """
@@ -49,7 +50,6 @@ def unpack_bytes(bytes):
     unpackaged1 = struct.unpack(unpack_format, bytes)
     return(unpackaged1)
 
-
 def save_fig(fig_id, folder_descrip , tight_layout=True,\
     fig_extension="png", resolution=600):
 
@@ -65,7 +65,6 @@ def save_fig(fig_id, folder_descrip , tight_layout=True,\
         plt.tight_layout()
     plt.savefig(path, format=fig_extension, dpi=resolution)
 
-
 def make_txt_file():
     now = datetime.datetime.today()
     now = now.strftime("%Y-%m-%d")
@@ -76,6 +75,18 @@ def make_txt_file():
     filename = os.path.join(FILE_PATH, (now_more + "_read_port"))
     f = open(filename, 'w')
     return filename
+
+def get_command_message(main_bytes):
+    """
+    Get the data packet to send for a particular command message.
+    Give a bytes value that is:
+    slave address, high byte of command, low byte of command, sequence number,
+    number of data bytes, data byte 1, data byte 2,...
+    checksum is calculated and bytes are unstuffed, framing bytes are added
+    """
+    ffibuilder = FFI()
+
+    main_bytes_c = ffibuilder.new("char[]", main_bytes)
 
 
 # Create figure for plotting
