@@ -13,7 +13,7 @@ from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()
 
-file_name = r"/home/colton/Documents/Python_Projects/JetCat_Comms/data/2022-11-23/2022-11-23_14:37:44_read_port"
+file_name = r"/home/colton/Documents/Python_Projects/JetCat_Comms/data/2022-12-02/2022-12-02_14:46:01_read_port"
 folder_input = input("Enter description for image folder: ")
 
 with open(file_name, 'rb',) as file:

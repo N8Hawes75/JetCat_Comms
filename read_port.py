@@ -5,7 +5,7 @@ import os
 import help_cw
 
 print("Reading serial port...")
-time_to_read = 2 # Time to read the port [min]
+time_to_read = 120 # Time to read the port [min]
 print("Test will take ", time_to_read, " minutes...")
 # Create file and timing
 filename = help_cw.make_txt_file()

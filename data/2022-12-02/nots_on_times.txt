@@ -1,0 +1,3 @@
+2022-12-02_11:59:38_read_port was starteed at 11:59:38 and finished at 2:34:32 PM
+
+Test from read_port.py was started at 2:46:00
