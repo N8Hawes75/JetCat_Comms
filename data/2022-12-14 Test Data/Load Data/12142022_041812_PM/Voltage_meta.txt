@@ -1,0 +1,28 @@
+Log name: 12/14/2022 04:18:12 PM
+User: Colton
+Project name: C:\Users\Colton\Documents\LoadCell.seproj
+File name: C:\Users\Colton\Documents\SignalExpress Data\12142022_041812_PM\Voltage.tdms
+File size: 3.883kB
+Log duration: 3 seconds
+Log dt (s): 1m
+Log iteration length (s): 100m
+Number of sample in log: 3000
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 12/14/2022 16:18:14.788
+Time zone: Eastern Standard Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     12/14/2022 04:18:12 PM - Voltage - Dev1_ai1
+
+
+Alarms:
+None
+
+Start conditions:
+None
+
+Stop conditions:
+None

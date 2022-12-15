@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration Version="4.1">
+  <List RefId="97">
+    <Value>B</Value>
+    <Value>E</Value>
+    <Value>J</Value>
+    <Value>K</Value>
+    <Value>N</Value>
+    <Value>R</Value>
+    <Value>S</Value>
+    <Value>T</Value>
+  </List>
+  <TemperatureChannel ChannelNumber="0" Name="AI0" IsActive="true" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti0" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="K" RefId="95">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="1" Name="AI1" IsActive="true" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti1" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="98">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="2" Name="AI2" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti2" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="100">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="3" Name="AI3" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti3" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="102">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="4" Name="AI4" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti4" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="104">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="5" Name="AI5" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti5" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="106">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="6" Name="AI6" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti6" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="108">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <TemperatureChannel ChannelNumber="7" Name="AI7" IsActive="false" SelectedMeasurementType="Temperature" SelectedUnits="DegreesCelsius" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ti7" SelectedDataRate="0" SelectedTempSensorType="Thermocouple" SelectedTcType="J" RefId="110">
+    <List Key="SupportedTempSensorTypes">
+      <Value>Thermocouple</Value>
+    </List>
+    <List IsRef="true" RefId="97" Key="SupportedTcTypes" />
+  </TemperatureChannel>
+  <AiChannelGroup GroupType="AnalogIn" RequestedScanRate="100" ActualScanRate="100" RefId="93">
+    <List Key="Channels">
+      <TemperatureChannel IsRef="true" RefId="95" />
+      <TemperatureChannel IsRef="true" RefId="98" />
+      <TemperatureChannel IsRef="true" RefId="100" />
+      <TemperatureChannel IsRef="true" RefId="102" />
+      <TemperatureChannel IsRef="true" RefId="104" />
+      <TemperatureChannel IsRef="true" RefId="106" />
+      <TemperatureChannel IsRef="true" RefId="108" />
+      <TemperatureChannel IsRef="true" RefId="110" />
+    </List>
+  </AiChannelGroup>
+  <BooleanSignal Value="false" RefId="115" />
+  <DigitalChannel ChannelNumber="0" Name="AuxPort:0" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di0" Direction="Input" Code="1" RefId="114">
+    <BooleanSignal IsRef="true" RefId="115" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="115" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="119" />
+  <DigitalChannel ChannelNumber="1" Name="AuxPort:1" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di1" Direction="Input" Code="1" RefId="118">
+    <BooleanSignal IsRef="true" RefId="119" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="119" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="123" />
+  <DigitalChannel ChannelNumber="2" Name="AuxPort:2" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di2" Direction="Input" Code="1" RefId="122">
+    <BooleanSignal IsRef="true" RefId="123" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="123" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="127" />
+  <DigitalChannel ChannelNumber="3" Name="AuxPort:3" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di3" Direction="Input" Code="1" RefId="126">
+    <BooleanSignal IsRef="true" RefId="127" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="127" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="131" />
+  <DigitalChannel ChannelNumber="4" Name="AuxPort:4" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di4" Direction="Input" Code="1" RefId="130">
+    <BooleanSignal IsRef="true" RefId="131" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="131" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="135" />
+  <DigitalChannel ChannelNumber="5" Name="AuxPort:5" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di5" Direction="Input" Code="1" RefId="134">
+    <BooleanSignal IsRef="true" RefId="135" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="135" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="139" />
+  <DigitalChannel ChannelNumber="6" Name="AuxPort:6" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di6" Direction="Input" Code="1" RefId="138">
+    <BooleanSignal IsRef="true" RefId="139" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="139" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <BooleanSignal Value="false" RefId="143" />
+  <DigitalChannel ChannelNumber="7" Name="AuxPort:7" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort/Di7" Direction="Input" Code="1" RefId="142">
+    <BooleanSignal IsRef="true" RefId="143" Key="SelectedSignal" />
+    <List Key="AvailableSignals">
+      <BooleanSignal IsRef="true" RefId="143" />
+      <SquareWaveSignal DutyCycle="50" Frequency="100" />
+    </List>
+  </DigitalChannel>
+  <DigitalPort ChannelNumber="0" Name="AuxPort" IsActive="false" SelectedMeasurementType="Digital" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="AuxPort" Direction="Input" SelectedSignal="" AvailableSignals="" Code="1" RefId="147">
+    <List Key="Channels">
+      <DigitalChannel IsRef="true" RefId="114" />
+      <DigitalChannel IsRef="true" RefId="118" />
+      <DigitalChannel IsRef="true" RefId="122" />
+      <DigitalChannel IsRef="true" RefId="126" />
+      <DigitalChannel IsRef="true" RefId="130" />
+      <DigitalChannel IsRef="true" RefId="134" />
+      <DigitalChannel IsRef="true" RefId="138" />
+      <DigitalChannel IsRef="true" RefId="142" />
+    </List>
+  </DigitalPort>
+  <DigitalChannelGroup GroupType="DigitalIn" RequestedScanRate="10" RefId="112">
+    <List Key="Channels">
+      <DigitalChannel IsRef="true" RefId="114" />
+      <DigitalChannel IsRef="true" RefId="118" />
+      <DigitalChannel IsRef="true" RefId="122" />
+      <DigitalChannel IsRef="true" RefId="126" />
+      <DigitalChannel IsRef="true" RefId="130" />
+      <DigitalChannel IsRef="true" RefId="134" />
+      <DigitalChannel IsRef="true" RefId="138" />
+      <DigitalChannel IsRef="true" RefId="142" />
+    </List>
+    <List Key="Ports">
+      <DigitalPort IsRef="true" RefId="147" />
+    </List>
+  </DigitalChannelGroup>
+  <CounterChannel ChannelNumber="0" Name="Ci0" IsActive="false" SelectedMeasurementType="Counter" SelectedUnits="None" CustomUnits="" CustomSlope="1" CustomIntercept="0" InternalName="Ci0" FrequencyCounterMeasurementSettings="" PeriodCounterMeasurementSettings="" PulseCounterMeasurementSettings="" TimingCounterMeasurementSettings="" SelectedCounterMeasurementSubType="Events" RefId="151">
+    <EventCounterMeasurementSettings StartingEdge="Rising" SelectedUnits="Ticks" GateInvert="false" CustomSlope="1" CustomIntercept="0" CustomUnitsLabel="Ticks" Recycle="false" ClearOnRead="false" RangeLimit="false" InitialCount="0" RangeMinimum="0" RangeMaximum="4294967295" CountDirection="CountUp" GateFunction="Disabled" Key="EventCounterMeasurementSettings" />
+  </CounterChannel>
+  <CounterChannelGroup GroupType="CounterIn" RequestedScanRate="10" RefId="149">
+    <List Key="Channels">
+      <CounterChannel IsRef="true" RefId="151" />
+    </List>
+  </CounterChannelGroup>
+  <ULDevice SelectedChannelMode="Differential" HasExpansion="false" RefId="7">
+    <ULNetworkDeviceInfo Name="E-TC" Pid="312" UniqueId="00:80:2F:35:78:E0" SerialNumber="20ABC75" ConnectionCode="0" DetectionType="Auto" Host="" IsRemote="false" Port="54211" Key="DeviceInfo">
+      <List Key="FirmwareVersions">
+        <FirmwareVersionInfo FirmwareType="Main" Version="1.02" />
+      </List>
+    </ULNetworkDeviceInfo>
+    <DeviceCaps ProductId="312" Key="DeviceCaps">
+      <AiCaps ProductId="312" NumTempChannels="8" Key="AiSubsystem">
+        <FunctionInfo NumberOfChannels="0" NumberOfRanges="0" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="100" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="false" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="true" SinglePtConcurrentSupport="true" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+        <FunctionInfo NumberOfChannels="8" NumberOfRanges="4" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="800" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="false" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="TiFunctionInfo" />
+        <Dictionary Key="AiChannelInfo">
+          <KeyValuePair>
+            <Key>Differential</Key>
+            <Value>
+              <Dictionary>
+                <KeyValuePair>
+                  <Key>TiChannel</Key>
+                  <Value>
+                    <List>
+                      <ChannelInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti0" Type="TiChannel" UpperLimit="0" ChannelNumber="0" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti1" Type="TiChannel" UpperLimit="0" ChannelNumber="1" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="2" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti2" Type="TiChannel" UpperLimit="0" ChannelNumber="2" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="3" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti3" Type="TiChannel" UpperLimit="0" ChannelNumber="3" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="4" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti4" Type="TiChannel" UpperLimit="0" ChannelNumber="4" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="5" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti5" Type="TiChannel" UpperLimit="0" ChannelNumber="5" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="6" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti6" Type="TiChannel" UpperLimit="0" ChannelNumber="6" />
+                      <ChannelInfo BitwiseConfigurable="false" Code="7" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Ti7" Type="TiChannel" UpperLimit="0" ChannelNumber="7" />
+                    </List>
+                  </Value>
+                </KeyValuePair>
+              </Dictionary>
+            </Value>
+          </KeyValuePair>
+        </Dictionary>
+        <Dictionary Key="AiRangeInfo">
+          <KeyValuePair>
+            <Key>Differential</Key>
+            <Value>
+              <Dictionary>
+                <KeyValuePair>
+                  <Key>TiRange</Key>
+                  <Value>
+                    <List>
+                      <ResourceInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="°C" Type="TiRange" UpperLimit="0" />
+                      <ResourceInfo BitwiseConfigurable="false" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="°F" Type="TiRange" UpperLimit="0" />
+                      <ResourceInfo BitwiseConfigurable="false" Code="2" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="K" Type="TiRange" UpperLimit="0" />
+                      <ResourceInfo BitwiseConfigurable="false" Code="4" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="V" Type="TiRange" UpperLimit="0" />
+                    </List>
+                  </Value>
+                </KeyValuePair>
+              </Dictionary>
+            </Value>
+          </KeyValuePair>
+        </Dictionary>
+        <List Key="SupportedTriggerTypes" />
+      </AiCaps>
+      <DiCaps ProductId="312" CiChannelsExist="true" CiPacerSupported="false" AiPacerSupported="false" Key="DiSubsystem">
+        <FunctionInfo NumberOfChannels="9" NumberOfRanges="2" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="true" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+        <List Key="PortInfo">
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="255" Name="AuxPort" Type="DiPort" UpperLimit="0" ChannelNumber="0" />
+        </List>
+        <List Key="ChannelInfo">
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="1" Name="AuxPort/Di0" Type="DiChannel" UpperLimit="0" ChannelNumber="0" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="2" Name="AuxPort/Di1" Type="DiChannel" UpperLimit="0" ChannelNumber="1" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="4" Name="AuxPort/Di2" Type="DiChannel" UpperLimit="0" ChannelNumber="2" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="8" Name="AuxPort/Di3" Type="DiChannel" UpperLimit="0" ChannelNumber="3" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="16" Name="AuxPort/Di4" Type="DiChannel" UpperLimit="0" ChannelNumber="4" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="32" Name="AuxPort/Di5" Type="DiChannel" UpperLimit="0" ChannelNumber="5" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="64" Name="AuxPort/Di6" Type="DiChannel" UpperLimit="0" ChannelNumber="6" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="128" Name="AuxPort/Di7" Type="DiChannel" UpperLimit="0" ChannelNumber="7" />
+        </List>
+        <List Key="RangeInfo">
+          <ResourceInfo BitwiseConfigurable="false" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="NonInverted" Type="DiRange" UpperLimit="1" />
+          <ResourceInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="1" Mask="-1" Name="Inverted" Type="DiRange" UpperLimit="0" />
+        </List>
+        <Dictionary Key="PortConfigType">
+          <KeyValuePair>
+            <Key>1</Key>
+            <Value>InOutWithConfig</Value>
+          </KeyValuePair>
+        </Dictionary>
+      </DiCaps>
+      <CiCaps ProductId="312" DiChannelsExist="true" IsCompositeScanCounter="false" CounterRecycle="false" CounterClearOnRead="false" Key="CiSubsystem">
+        <FunctionInfo NumberOfChannels="1" NumberOfRanges="1" MaxCount="-1" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="true" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="true" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+        <List Key="ChannelInfo">
+          <ChannelInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="5" Name="Ci0" Type="CiChannel" UpperLimit="0" ChannelNumber="0" />
+        </List>
+        <List Key="RangeInfo">
+          <ResourceInfo BitwiseConfigurable="false" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="Totalize" Type="CiRange" UpperLimit="0" />
+        </List>
+        <List Key="SupportedCounterMeasurementSubTypes">
+          <Value>Events</Value>
+        </List>
+        <List Key="SupportedCounterEdgeDetections">
+          <Value>Rising</Value>
+          <Value>Falling</Value>
+        </List>
+        <List Key="SupportedCounterDirections">
+          <Value>CountUp</Value>
+          <Value>CountDown</Value>
+        </List>
+        <List Key="SupportedEventGateFunctions" />
+        <List Key="SupportedFrequencyGateFunctions" />
+        <List Key="SupportedPeriodGateFunctions" />
+        <List Key="SupportedPulseWidthGateFunctions" />
+        <List Key="SupportedTimingModeGatingModes" />
+      </CiCaps>
+      <AoCaps ProductId="312" ChannelInfo="" RangeInfo="" Key="AoSubsystem">
+        <FunctionInfo NumberOfChannels="0" NumberOfRanges="0" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="100" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="false" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+      </AoCaps>
+      <DoCaps ProductId="312" Key="DoSubsystem">
+        <FunctionInfo NumberOfChannels="9" NumberOfRanges="2" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="100" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="true" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+        <List Key="PortInfo">
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="255" Name="AuxPort" Type="DoPort" UpperLimit="0" ChannelNumber="0" />
+        </List>
+        <List Key="ChannelInfo">
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="1" Name="AuxPort/Do0" Type="DoChannel" UpperLimit="0" ChannelNumber="0" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="2" Name="AuxPort/Do1" Type="DoChannel" UpperLimit="0" ChannelNumber="1" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="4" Name="AuxPort/Do2" Type="DoChannel" UpperLimit="0" ChannelNumber="2" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="8" Name="AuxPort/Do3" Type="DoChannel" UpperLimit="0" ChannelNumber="3" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="16" Name="AuxPort/Do4" Type="DoChannel" UpperLimit="0" ChannelNumber="4" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="32" Name="AuxPort/Do5" Type="DoChannel" UpperLimit="0" ChannelNumber="5" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="64" Name="AuxPort/Do6" Type="DoChannel" UpperLimit="0" ChannelNumber="6" />
+          <ChannelInfo BitwiseConfigurable="true" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="128" Name="AuxPort/Do7" Type="DoChannel" UpperLimit="0" ChannelNumber="7" />
+        </List>
+        <List Key="RangeInfo">
+          <ResourceInfo BitwiseConfigurable="false" Code="1" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="-1" Name="NonInverted" Type="DoRange" UpperLimit="1" />
+          <ResourceInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="1" Mask="-1" Name="Inverted" Type="DoRange" UpperLimit="0" />
+        </List>
+      </DoCaps>
+      <CoCaps ProductId="312" ChannelInfo="" ClockInfo="" Key="CoSubsystem">
+        <FunctionInfo NumberOfChannels="0" NumberOfRanges="0" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="0" MinSWPacedRate="0" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="false" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+      </CoCaps>
+      <CompiCaps ProductId="312" ChannelInfo="" CompositeInputType="0" IsSupported="false" Key="CompiSubsystem">
+        <FunctionInfo NumberOfChannels="18" NumberOfRanges="2" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="0" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="true" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+      </CompiCaps>
+      <CompoCaps ProductId="312" ChannelInfo="" IsSupported="false" Key="CompoSubsystem">
+        <FunctionInfo NumberOfChannels="9" NumberOfRanges="0" MaxCount="0" MinBufferSize="0" PacketSize="0" Config="0" ExtClockOnlyFlags="0" MinOutputSampleCount="100" WinBufAllocSize="16" MaxThroughput="0" MaxHWPacedRate="100" MinHWPacedRate="1" MaxSWPacedRate="100" MinSWPacedRate="1" BaseClock="0" ExtClockSupport="false" TriggerSupport="false" BasicDigitalEdgeTriggerSupport="false" BasicDigitalLevelTriggerSupport="false" BasicAnalogEdgeTriggerSupport="false" GatedDigitalLevelTriggerSupport="false" GatedAnalogLevelTriggerSupport="false" GatedAnalogHysteresisTriggerSupport="false" GatedAnalogWindowTriggerSupport="false" CompositeTriggerSupport="false" PretrigSupport="false" PacerSupport="false" BurstSupport="false" SimultSupport="false" RoutingSupport="false" DataReverse="false" ChanParityRequired="false" ContigMemoryRequired="false" ChannelQueueSupport="false" ScaleQueueSupport="false" IndividualScaleSupport="false" DutyCycleSupport="false" CountUp="false" ConfigIsDiff="false" SinglePtConcurrentSupport="false" SharedWithAnalogChannels="false" ProgrammableCounterEdgeSupport="false" SupportsAiAndTiRanges="false" SupportsHiResRate="false" SupportsTEDs="false" QueueRequiresContiguousChannels="false" SupportsSingleEnded="false" SupportsDifferential="false" IndividualChannelConfigSupport="false" BasicDigitalPatternTriggerSupport="false" BasicAnalogSlopeTriggerSupport="false" FirstTcEnumValue="0" Key="FunctionInfo" />
+      </CompoCaps>
+      <Dictionary Key="OtherResourceInfo">
+        <KeyValuePair>
+          <Key>Device</Key>
+          <Value>
+            <List>
+              <ResourceInfo BitwiseConfigurable="false" Code="0" CompositeChannel="false" CompositeTrigger="false" ExtClock="false" LowerLimit="0" Mask="92" Name="E-TC" Type="Device" UpperLimit="0" />
+            </List>
+          </Value>
+        </KeyValuePair>
+      </Dictionary>
+    </DeviceCaps>
+    <Dictionary Key="ChannelGroups">
+      <KeyValuePair>
+        <Key>AnalogIn</Key>
+        <Value>
+          <AiChannelGroup IsRef="true" RefId="93" />
+        </Value>
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>DigitalIn</Key>
+        <Value>
+          <DigitalChannelGroup IsRef="true" RefId="112" />
+        </Value>
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>CounterIn</Key>
+        <Value>
+          <CounterChannelGroup IsRef="true" RefId="149" />
+        </Value>
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>CompositeIn</Key>
+        <Value />
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>AnalogOut</Key>
+        <Value />
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>CompositeOut</Key>
+        <Value />
+      </KeyValuePair>
+      <KeyValuePair>
+        <Key>CounterOut</Key>
+        <Value />
+      </KeyValuePair>
+    </Dictionary>
+  </ULDevice>
+  <ULDeviceManager RefId="5">
+    <List Key="Devices">
+      <ULDevice IsRef="true" RefId="7" />
+    </List>
+  </ULDeviceManager>
+  <ImmediateTrigger RefId="155" />
+  <ImmediateTrigger RefId="156" />
+  <Hal RefId="2">
+    <List Key="Plugins">
+      <ULPlugin>
+        <ULDeviceManager IsRef="true" RefId="5" Key="DeviceManager" />
+      </ULPlugin>
+    </List>
+    <HalDeviceManager Key="DeviceManager">
+      <List Key="PluginDeviceManagers">
+        <ULDeviceManager IsRef="true" RefId="5" />
+      </List>
+      <ImmediateTrigger IsRef="true" RefId="155" Key="StartTrigger" />
+      <ImmediateTrigger IsRef="true" RefId="156" Key="StopTrigger" />
+    </HalDeviceManager>
+  </Hal>
+  <DevicePanel RefId="157" />
+  <AiChannelModel RefId="166">
+    <TemperatureChannel IsRef="true" RefId="95" Key="HalChannel" />
+    <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+    <Color A="1" R="0.7011019" G="0.045186203" B="0.045186203" Key="Color" />
+  </AiChannelModel>
+  <AiChannelModel RefId="172">
+    <TemperatureChannel IsRef="true" RefId="98" Key="HalChannel" />
+    <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+    <Color A="1" R="1" G="0.3185468" B="0" Key="Color" />
+  </AiChannelModel>
+  <DisplayPanel Header="Display Tab 0" RefId="160">
+    <List Key="DisplayRows">
+      <DisplayRow Height="305" IsAutoSizing="true">
+        <List Key="Displays">
+          <StripChart Name="Strip" Width="1312.6" Theme="LightTheme" YAxisScaleMode="Auto" XAxisLabel="X" YAxisLabel="Y" YAxisMin="0" YAxisMax="700" ShowGridLines="false" Duration="300">
+            <List Key="Traces">
+              <AiChannelModel IsRef="true" RefId="166" />
+            </List>
+          </StripChart>
+        </List>
+      </DisplayRow>
+      <DisplayRow Height="305" IsAutoSizing="true">
+        <List Key="Displays">
+          <StripChart Name="Strip_0" Width="1312.6" Theme="LightTheme" YAxisScaleMode="Auto" XAxisLabel="X" YAxisLabel="Y" YAxisMin="7" YAxisMax="13" ShowGridLines="false" Duration="300">
+            <List Key="Traces">
+              <AiChannelModel IsRef="true" RefId="172" />
+            </List>
+          </StripChart>
+        </List>
+      </DisplayRow>
+    </List>
+  </DisplayPanel>
+  <DAQamiConfigRoot IsConfigRoot="true">
+    <MainWindow Key="UI">
+      <Hal IsRef="true" RefId="2" Key="Hal" />
+      <DevicePanel IsRef="true" RefId="157" Key="DevicePanel" />
+      <DisplayTabs Key="DisplayTabs">
+        <List Key="Tabs">
+          <DisplayPanel IsRef="true" RefId="160" />
+        </List>
+        <DisplayPanel IsRef="true" RefId="160" Key="SelectedTab" />
+      </DisplayTabs>
+      <ConfigPanel Key="ConfigPanel">
+        <DevicePanel IsRef="true" RefId="157" Key="DevicePanel" />
+        <TriggersConfigTab Key="TriggersTab">
+          <TriggerCollection IsStartTrigger="true" Key="StartTrigger">
+            <Hal IsRef="true" RefId="2" Key="Hal" />
+            <ImmediateTrigger IsRef="true" RefId="155" Key="HalTrigger" />
+          </TriggerCollection>
+          <TriggerCollection IsStartTrigger="false" Key="StopTrigger">
+            <Hal IsRef="true" RefId="2" Key="Hal" />
+            <ImmediateTrigger IsRef="true" RefId="156" Key="HalTrigger" />
+          </TriggerCollection>
+        </TriggersConfigTab>
+      </ConfigPanel>
+    </MainWindow>
+    <List Key="Services">
+      <DeviceManager>
+        <List Key="Devices">
+          <NetworkDeviceModel NextColorIndex="18">
+            <List Key="Channels">
+              <AiChannelModel IsRef="true" RefId="166" />
+              <AiChannelModel IsRef="true" RefId="172" />
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="100" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0.327778131" G="0.610495567" B="0.000607054" Key="Color" />
+              </AiChannelModel>
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="102" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0.0512694642" G="0.4396572" B="0.376262158" Key="Color" />
+              </AiChannelModel>
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="104" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0" G="0.304987341" B="0.6795425" Key="Color" />
+              </AiChannelModel>
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="106" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0.191201687" G="0.138431624" B="0.9301109" Key="Color" />
+              </AiChannelModel>
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="108" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0.5028865" G="0.135633335" B="0.527115166" Key="Color" />
+              </AiChannelModel>
+              <AiChannelModel>
+                <TemperatureChannel IsRef="true" RefId="110" Key="HalChannel" />
+                <AiChannelGroup IsRef="true" RefId="93" Key="ChannelGroup" />
+                <Color A="1" R="0.9301109" G="0.768151164" B="0" Key="Color" />
+              </AiChannelModel>
+              <DigitalPortModel>
+                <DigitalPort IsRef="true" RefId="147" Key="HalChannel" />
+                <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                <Color A="1" R="0.9301109" G="0.266355634" B="0.266355634" Key="Color" />
+                <List Key="Channels">
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="114" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="1" G="0.5457245" B="0.138431624" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="118" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.8962694" G="0.8307699" B="0.270497829" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="122" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.665387332" G="0.8796224" B="0.215860531" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="126" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.1682694" G="0.7605245" B="0.672443151" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="130" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.171441108" G="0.665387332" B="1" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="134" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.4178851" G="0.361306816" B="1" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="138" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.8549926" G="0.366252631" B="0.8796224" Key="Color" />
+                  </DigitalChannelModel>
+                  <DigitalChannelModel>
+                    <DigitalChannel IsRef="true" RefId="142" Key="HalChannel" />
+                    <DigitalChannelGroup IsRef="true" RefId="112" Key="ChannelGroup" />
+                    <Color A="1" R="0.838799" G="0.496933" B="0.496933" Key="Color" />
+                  </DigitalChannelModel>
+                </List>
+              </DigitalPortModel>
+              <CounterChannelModel>
+                <CounterChannel IsRef="true" RefId="151" Key="HalChannel" />
+                <CounterChannelGroup IsRef="true" RefId="149" Key="ChannelGroup" />
+                <Color A="1" R="0.8879231" G="0.658374846" B="0.3915725" Key="Color" />
+              </CounterChannelModel>
+            </List>
+            <ULDevice IsRef="true" RefId="7" Key="HalDevice" />
+            <Hal IsRef="true" RefId="2" Key="Hal" />
+          </NetworkDeviceModel>
+        </List>
+        <Hal IsRef="true" RefId="2" Key="Hal" />
+      </DeviceManager>
+      <HistoryDataService>
+        <Dictionary Key="ChannelMap">
+          <KeyValuePair>
+            <Key>0</Key>
+            <Value>
+              <TemperatureChannel IsRef="true" RefId="95" />
+            </Value>
+          </KeyValuePair>
+          <KeyValuePair>
+            <Key>1</Key>
+            <Value>
+              <TemperatureChannel IsRef="true" RefId="98" />
+            </Value>
+          </KeyValuePair>
+        </Dictionary>
+      </HistoryDataService>
+      <Hal IsRef="true" RefId="2" />
+    </List>
+  </DAQamiConfigRoot>
+</Configuration>
