@@ -24,8 +24,7 @@ filename = os.path.join(FILE_PATH, (now_more + "_read_port"))
 tdms_data = TdmsFile.read(data_filename)
 
 for group in tdms_data.groups():
-    print(group)
-    #Determine if this is a thermocouple (MCCDAQ) or Load Cell (NI DAQ) TDMS
+    # Determine if this is a thermocouple (MCCDAQ) or Load Cell (NI DAQ) TDMS
     if group.name == "Analog":
         file_type = "MCC"
     else:
@@ -54,7 +53,7 @@ if file_type == "MCC":
     plt.title('DAQami E-TC')
     plt.xlabel('Time [s]')
     plt.ylabel('Temperature [degC]')
-    plt.subplots_adjust(top=.95)
+    plt.tight_layout()
     fig_path = os.path.join(FILE_PATH, "temps_v_time.png")
     plt.savefig(fig_path, dpi=600)
 
@@ -63,7 +62,7 @@ if file_type == "MCC":
     plt.title('DAQami E-TC')
     plt.xlabel('Time [s]')
     plt.ylabel('Temperature [degC]')
-    plt.subplots_adjust(top=.95)
+    plt.tight_layout()
     fig_path = os.path.join(FILE_PATH, "temp1_v_time.png")
     plt.savefig(fig_path, dpi=600)
 
@@ -72,7 +71,7 @@ if file_type == "MCC":
     plt.title('DAQami E-TC')
     plt.xlabel('Time [s]')
     plt.ylabel('Temperature [degC]')
-    plt.subplots_adjust(top=.95)
+    plt.tight_layout()
     fig_path = os.path.join(FILE_PATH, "temp2_v_time.png")
     plt.savefig(fig_path, dpi=600)
 
@@ -87,9 +86,46 @@ if file_type == "MCC":
     ax2.set_ylabel('Temperature 2 [degC]', color='orange')
 
     fig_path = os.path.join(FILE_PATH, "temps_v_time_twin.png")
+    plt.tight_layout()
     plt.savefig(fig_path, dpi=600)
     plt.show()
 
 
 if file_type == "NI":
     print("NI TDMS file found...")
+    
+    
+    ni_groups = tdms_data.groups()
+    i = 0
+    group_names = []
+    for group in ni_groups:
+        group_names.append(group.name)
+    print("NI group names: ")
+    print(group_names, "\n")
+
+
+    ni_group1 = tdms_data[group_names[0]]
+    ni_g1_allchannels = ni_group1.channels()
+    channel_names = []
+    for channel in ni_g1_allchannels:
+        channel_names.append(channel.name)
+    print("NI channel names: ")
+    print(channel_names, "\n")
+    ni_g1_chan1 = ni_group1[channel_names[0]]
+
+    # These are numpy ndarrays
+    ni_g1_ai0_time = ni_g1_chan1.time_track()
+    ni_g1_ai0_v = ni_g1_chan1[:]
+
+    # Plot NI data
+    FILE_PATH = os.path.join(FILE_PATH, "NI")
+    os.makedirs(FILE_PATH, exist_ok=True)
+    plt.figure()
+    plt.plot(ni_g1_ai0_time, ni_g1_ai0_v, 'blue')
+    plt.title('Load Cell Data')
+    plt.xlabel('Time [s]')
+    plt.ylabel('Voltage [V]')
+    plt.tight_layout()
+    fig_path = os.path.join(FILE_PATH, "load_v_time.png")
+    plt.savefig(fig_path, dpi=600)
+    plt.show()
