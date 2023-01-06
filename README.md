@@ -3,6 +3,7 @@ Created Repo on 11/11/2022
 
 
 ## Setup Help
+------------
 ```
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
@@ -18,6 +19,7 @@ sudo apt install ffmpeg
 ```
 
 ## throttle_cmd_1.py
+------------
 
 This program is for sending throttle commands to the PRO-Interface while also logging all the data from the serial port. The commands are received through a .txt file that follows this format:
 ```
@@ -29,6 +31,7 @@ Time, Throtttle%
 180,0
 ```
 #### throttle_cmd_1.py virtual serial port for testing
+------------
 
 To test the program, you should open a virtual serial port to make sure the proper commands are being sent. To create a virtual serial port, open a terminal and enter
 ```
@@ -50,6 +53,7 @@ Python can then connect to /dev/pts/5 and any commands sent over this port will 
 These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
 
 #### throttle_cmd_1.py CFFI
+------------
 
 To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory for some reason. This will compile the library you need to include inside of `throttle_cmd_1.py`.
 
