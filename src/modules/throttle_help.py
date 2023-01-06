@@ -48,3 +48,7 @@ def start_countdown():
     print("STARTING ENGINE IN 1...")
     time.sleep(1)
     print("STARTING ENGINE!")
+
+def start_engine(ser):
+    ser.write(b"Start Engine!")
+    
