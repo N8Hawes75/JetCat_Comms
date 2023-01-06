@@ -16,6 +16,8 @@ import serial
 import time
 
 import modules.throttle_help as throttle_help
+from cffi import FFI
+from _crc.lib import get_crc16z
 
 
 # Create log filename
@@ -24,7 +26,9 @@ filename = throttle_help.make_filename()
 # Open throttle curve request file.
 cmd_file_path = input("Input command file path: ")
 cmd_array = throttle_help.read_throttle_cmds(cmd_file_path)
-
+cmd_length = cmd_array.shape[0]
+time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
+print("Test will last", time_to_kill, "seconds")
 
 print("Connecting to port...")
 with serial.Serial('/dev/pts/5', baudrate=115200, timeout=2) as ser, \
@@ -33,12 +37,19 @@ with serial.Serial('/dev/pts/5', baudrate=115200, timeout=2) as ser, \
     start = input("Connected to port. Are you ready to start the engine? [y/n]")
 
     if start == "y":
-
+        throttle_help.start_countdown()
+        throttle_help.start_engine()
         ser.write(b"test_from_python")
-        a_data_packet = ser.read(100)
-        # Do something with this data packet
-        file.write(a_data_packet)
+
+        starting_time = time.time()
+        end_time = starting_time + time_to_kill
+        while starting_time < end_time:
+
+            a_data_packet = ser.read(100)
+            # Do something with this data packet
+            file.write(a_data_packet)
     else:
-        print("Bye")
+        print("Not starting engine. Bye.")
+
 
 
