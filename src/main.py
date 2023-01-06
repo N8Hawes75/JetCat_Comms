@@ -1,3 +1,7 @@
+"""
+Create a _crc.c library so that we can calculate crc16 checksums.
+"""
+
 from cffi import FFI
 
 

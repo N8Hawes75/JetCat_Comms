@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import struct
 import pandas as pd
-import cw_helper2
+import modules.cw_helper2 as cw_helper2
 import os
 import datetime
 

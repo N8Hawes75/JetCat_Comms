@@ -68,12 +68,11 @@ def save_fig(fig_id, folder_descrip , tight_layout=True,\
 def make_txt_file():
     now = datetime.datetime.today()
     now = now.strftime("%Y-%m-%d")
-    now_more = datetime.datetime.today()
-    now_more = now_more.strftime("%Y-%m-%d_%H:%M:%S")
     FILE_PATH = os.path.join(".", "data", now )
     os.makedirs(FILE_PATH, exist_ok=True)
-    filename = os.path.join(FILE_PATH, (now_more + "_read_port"))
-    f = open(filename, 'w')
+    now = datetime.datetime.today()
+    now = now.strftime("%Y-%m-%d_T%H%M%S")
+    filename = os.path.join(FILE_PATH, (now + "_log"))
     return filename
 
 def get_command_message(main_bytes):
