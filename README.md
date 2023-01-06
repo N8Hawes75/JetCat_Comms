@@ -47,6 +47,8 @@ cat < /dev/pts/4
 ```
 Python can then connect to /dev/pts/5 and any commands sent over this port will be received on your terminal.
 
+These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
+
 #### throttle_cmd_1.py CFFI
 
 To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory for some reason. This will compile the library you need to include inside of `throttle_cmd_1.py`.
