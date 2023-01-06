@@ -97,7 +97,6 @@ if file_type == "MCC":
 if file_type == "NI":
     print("NI TDMS file found...")
     
-    
     ni_groups = tdms_data.groups()
     i = 0
     group_names = []
