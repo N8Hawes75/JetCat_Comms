@@ -78,13 +78,6 @@ def send_throttle_rpm(ser, throttle_rpm):
     # send the integer 10000, because uint16_t's maximum decimal value is
     # 65535.
     rpm_to_send = throttle_rpm // 10 # Truncate off decimal place
-    header_data = bytes(rpm_to_send)
-
-
-
-
-
-
-
-    # For now, just write the integer to serial port:
+    header_data = (rpm_to_send.item()).to_bytes(2, 'big')
+    print(header_data)
     ser.write(header_data)

@@ -44,13 +44,12 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
         end_time = start_time + time_to_kill # now + length of the test
         cmd_counter = 1 # Increment when a RPM command is sent. Start at [1,0]
         now = start_time
-        print(start_time)
-        print(now)
+        print("Starting time: ", start_time)
         while now < end_time:
 
             # Write data to log file
-            # serial_port_data = ser.read(100)
-            # file.write(serial_port_data)
+            serial_port_data = ser.read(100)
+            file.write(serial_port_data)
 
             # If enough time has elapsed, send a throttle command
             if now > (start_time + cmd_array[cmd_counter, 0]):
@@ -62,7 +61,6 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
-            print(now)
 
     else:
         print("Not starting engine. Bye.")
