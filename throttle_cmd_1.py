@@ -15,7 +15,7 @@ import pandas as pd
 import serial
 import time
 
-import src.modules.throttle_help as throttle_help
+import throttle_help as throttle_help
 from cffi import FFI
 from _crc.lib import get_crc16z
 
@@ -54,10 +54,9 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
             # If enough time has elapsed, send a throttle command
             if now > (start_time + cmd_array[cmd_counter, 0]):
                 throttle_help.send_throttle_rpm(ser, cmd_array[cmd_counter, 1])
-                print("Just called send_throttle_rpm and incremented counter")
-                print("start", start_time)
-                print("now", now)
-                print("cmd_array[cmd_counter, 0]", cmd_array[cmd_counter, 0])
+                print("Sent cmd at:", now)
+                print("Time:", cmd_array[cmd_counter, 0])
+                print("Throttle_RPM:", cmd_array[cmd_counter, 1])
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
