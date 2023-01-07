@@ -97,13 +97,14 @@ def send_throttle_rpm(ser, throttle_rpm, sequence_no):
     # Append the crc16 bytes to the end of the basic header
     header_unstuffed = header_basic + crc16_bytes
 
+    print("RPM to send:", rpm_bytes)
+    print("CRC16 decimal:", crc16_calc)
+    print("CRC16 hex:", crc16_bytes)
     #Need to stuff the header data in case there are any 0x7E or 0x7D bytes
     header_stuffed = stuff_header(header_unstuffed)
     header_send = b'\x7E' + header_stuffed + b'\x7E'
 
-    print("RPM to send:", rpm_bytes)
-    print("CRC16 decimal:", crc16_calc)
-    print("CRC16 hex:", crc16_bytes)
+
     print("Full header_send:", header_stuffed)
     ser.write(header_send)
 
