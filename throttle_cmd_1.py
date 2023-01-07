@@ -53,16 +53,16 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
 
             # If enough time has elapsed, send a throttle command
             if now > (start_time + cmd_array[cmd_counter, 0]):
-                throttle_help.send_throttle_rpm(ser, cmd_array[cmd_counter, 1])
+
                 print("Sent cmd at:", now)
                 print("Time:", cmd_array[cmd_counter, 0])
                 print("Throttle_RPM:", cmd_array[cmd_counter, 1])
+                throttle_help.send_throttle_rpm(ser, cmd_array[cmd_counter, 1], cmd_counter)
+                print()
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
 
     else:
         print("Not starting engine. Bye.")
-
-
 
