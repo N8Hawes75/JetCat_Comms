@@ -23,13 +23,14 @@ sudo apt install ffmpeg
 
 This program is for sending throttle commands to the PRO-Interface while also logging all the data from the serial port. The commands are received through a .txt file that follows this format:
 ```
-Time, Throtttle%
+Time, Throttle_RPM
 0,0
-10,33000
-30,100000
+45,34000
+100,100000
 120,33000
 180,0
 ```
+The first RPM command needs a significant amount of time from start to allow the engine to start. The engine should be primed with the GSU 
 #### throttle_cmd_1.py virtual serial port for testing
 ------------
 

@@ -40,13 +40,17 @@ with serial.Serial('/dev/pts/7', baudrate=115200, timeout=2) as ser, \
         throttle_help.start_countdown()
         throttle_help.start_engine(ser)
 
-        starting_time = time.time()
-        end_time = starting_time + time_to_kill
-        while starting_time < end_time:
+        end_time = time.time() + time_to_kill # now + length of the test
+        cmd_counter = 1 # Increment when a RPM command is sent.
+        while time.time() < end_time:
 
-            a_data_packet = ser.read(100)
-            # Do something with this data packet
-            file.write(a_data_packet)
+            # Write data to log file
+            serial_port_data = ser.read(100)
+            file.write(serial_port_data)
+
+            # If enough time has elapsed, send a throttle command
+
+
     else:
         print("Not starting engine. Bye.")
 

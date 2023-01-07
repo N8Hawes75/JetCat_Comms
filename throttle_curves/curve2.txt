@@ -1,3 +1,4 @@
-Time, Throttle%
+Time, Throttle_RPM
 0,35000
+15, 35010
 30, 0
