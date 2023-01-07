@@ -25,31 +25,44 @@ filename = throttle_help.make_filename()
 
 # Open throttle curve request file.
 cmd_file_path = input("Input command file path: ")
-cmd_array = throttle_help.read_throttle_cmds(cmd_file_path)
+cmd_array = throttle_help.read_throttle_rpm_cmds(cmd_file_path)
 cmd_length = cmd_array.shape[0]
 time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
 
 print("Connecting to port...")
-with serial.Serial('/dev/pts/7', baudrate=115200, timeout=2) as ser, \
+with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
     open(filename, 'ab') as file:
 
-    start = input("Connected to port. Are you ready to start the engine? [y/n]")
+    start_input = input("Connected to port. Are you ready to start the engine? [y/n]")
 
-    if start == "y":
+    if start_input == "y":
         throttle_help.start_countdown()
         throttle_help.start_engine(ser)
 
-        end_time = time.time() + time_to_kill # now + length of the test
-        cmd_counter = 1 # Increment when a RPM command is sent.
-        while time.time() < end_time:
+        start_time = time.time()
+        end_time = start_time + time_to_kill # now + length of the test
+        cmd_counter = 1 # Increment when a RPM command is sent. Start at [1,0]
+        now = start_time
+        print(start_time)
+        print(now)
+        while now < end_time:
 
             # Write data to log file
-            serial_port_data = ser.read(100)
-            file.write(serial_port_data)
+            # serial_port_data = ser.read(100)
+            # file.write(serial_port_data)
 
             # If enough time has elapsed, send a throttle command
+            if now > (start_time + cmd_array[cmd_counter, 0]):
+                throttle_help.send_throttle_rpm(ser, cmd_array[cmd_counter, 1])
+                print("Just called send_throttle_rpm and incremented counter")
+                print("start", start_time)
+                print("now", now)
+                print("cmd_array[cmd_counter, 0]", cmd_array[cmd_counter, 0])
+                cmd_counter = cmd_counter + 1
 
+            now = time.time()
+            print(now)
 
     else:
         print("Not starting engine. Bye.")

@@ -57,7 +57,7 @@ def start_engine(ser):
     # Command to start the P300-PRO with binary serial interface:
     ser.write(b"\x7E\x01\x01\x01\x01\x02\x00\x01\x28\x30\x7E")
 
-def send_throttle_percent(ser, throttle_rpm):
+def send_throttle_rpm(ser, throttle_rpm):
     # Send the P300-PRO any throttle command.
 
 
@@ -79,3 +79,12 @@ def send_throttle_percent(ser, throttle_rpm):
     # 65535.
     rpm_to_send = throttle_rpm // 10 # Truncate off decimal place
     header_data = bytes(rpm_to_send)
+
+
+
+
+
+
+
+    # For now, just write the integer to serial port:
+    ser.write(header_data)
