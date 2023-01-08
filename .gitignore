@@ -1,5 +1,5 @@
 # Python & C .gitignore put together
-
+_crc.c
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
