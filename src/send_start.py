@@ -14,7 +14,7 @@ import serial
 import datetime
 import os
 
-import cw_helper2
+import src.modules.cw_helper2 as cw_helper2
 from cffi import FFI
 from _crc.lib import pi_approx, get_crc16z
 ffibuilder = FFI()

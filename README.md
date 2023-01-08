@@ -73,3 +73,8 @@ Byte stuffing should be totally done. Timing used to be bad because I had `ser.r
 #### throttle_cmd_1.py Run Tips
 
 You need at least ~40-45 seconds between your START command and the first set engine RPM command. I tested the program with the simulate engine mode and it works. If you change the RPM on the GSU, the next RPM command just overwrites your change. If you shut the engine down on the GSU, it will remain off while new RPM commands are being sent. 
+
+## TODO:
+
+- Timestamps with the processed data somehow? Save to another file while also saving the PRO-Interface data to a file? There should be a time column in the `/decoded_data/XXXX-XX-XX/XXXX.csv` data files
+-Organize the code
