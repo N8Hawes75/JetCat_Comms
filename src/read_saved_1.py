@@ -7,8 +7,8 @@ import datetime
 from cffi import FFI
 import os
 
-import help_cw
-import cw_helper2
+import modules.help_cw as help_cw
+import modules.cw_helper2 as cw_helper2
 from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()

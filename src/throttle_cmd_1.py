@@ -15,7 +15,7 @@ import pandas as pd
 import serial
 import time
 
-import throttle_help as throttle_help
+import modules.throttle_help as throttle_help
 from cffi import FFI
 from _crc.lib import get_crc16z
 

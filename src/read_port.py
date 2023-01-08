@@ -2,7 +2,7 @@ import serial
 import datetime
 import os
 
-import help_cw
+import modules.help_cw as help_cw
 
 print("Reading serial port...")
 time_to_read = 120 # Time to read the port [min]
