@@ -63,3 +63,10 @@ These instructions come from [stack overflow](https://stackoverflow.com/question
 To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory for some reason. This will compile the library you need to include inside of `throttle_cmd_1.py`.
 
 This is a bit of a mess right now. Run `main.py` to create the python .so library, then run `throttle_cmd_1.py` in the root directory as well so that it can view the .so c extension.
+
+#### throttle_cmd_1.py TODO
+------------
+
+This program should work with the engine now. There really is no reason to figure out what the engine control commands are while the engine is running. This should really all be calculated before the engine is started and then pulled from storage to send. But probably fast enough so that it does not matter.
+
+Byte stuffing should be totally done. Timing used to be bad because I had `ser.read(100)` set, with a timeout of 2 seconds, so the program would just halt at the read statement and wait for 100 bytes for 2 seconds. Fixed this with `ser.read(ser.in_waiting)`.
