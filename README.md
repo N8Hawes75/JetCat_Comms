@@ -64,8 +64,6 @@ To see the serial data in binary.
 
 These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
 
-
-
 #### throttle_cmd_1.py Run Tips
 
 You need at least ~40-45 seconds between your START command and the first set engine RPM command. I tested the program with the simulate engine mode and it works. If you change the RPM on the GSU, the next RPM command just overwrites your change. If you shut the engine down on the GSU, it will remain off while new RPM commands are being sent. 
