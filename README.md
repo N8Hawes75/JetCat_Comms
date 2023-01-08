@@ -76,6 +76,6 @@ Byte stuffing should be totally done. Timing used to be bad because I had `ser.r
 
 ## TODO:
 
-- `throttle_cmd_1.py` and `read_port.py` Timestamps with the processed data somehow? Save to another file while also saving the PRO-Interface data to a file? There should be a time column in the `/decoded_data/XXXX-XX-XX/XXXX.csv` data files
-- `throttle_cmd_1.py` There really is no reason to figure out what the engine control commands are while the engine is running. This should really all be calculated before the engine is started and then pulled from storage to send. But probably fast enough so that it does not matter.
+- `throttle_cmd_1.py` and `read_port.py`: Timestamps with the processed data somehow? Save to another file while also saving the PRO-Interface data to a file? There should be a time column in the `/decoded_data/XXXX-XX-XX/XXXX.csv` data files
+- `throttle_cmd_1.py`: There really is no reason to figure out what the engine control commands are while the engine is running. This should really all be calculated before the engine is started and then pulled from storage to send. But probably fast enough so that it does not matter.
 - Organize the code
