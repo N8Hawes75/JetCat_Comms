@@ -2,7 +2,6 @@
 
 Created Repo on 11/11/2022
 
-
 ## Setup Help
 
 ```
@@ -18,13 +17,15 @@ To save Matplotlib animations you must install ffmpeg in ubuntu terminal
 ```
 sudo apt install ffmpeg
 ```
-Other modules included in `requirements.txt`
+Other modules included in `requirements.txt`. Really it's numpy pandas matplotlib pyserial and cffi.
 
 ## CFFI
 
 To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory for some reason. This will compile the library you need to include inside of any program that requires crc16 calcs.
 
 This is a bit of a mess right now. Run `main.py` to create the python .so library, then put that library in the same folder as the source code you're going to run, `import _crc.lib`
+
+The cffi library is currently only working on Linux. Not sure how to get it to work on windows, but it's something to do with the compiler.
 
 ## throttle_cmd_1.py
 
@@ -34,10 +35,9 @@ Time, Throttle_RPM
 0,0
 45,34000
 100,100000
-120,33000
+120,34000
 180,0
 ```
-The first RPM command needs a significant amount of time from start to allow the engine to start. The engine should be primed with the GSU 
 
 #### throttle_cmd_1.py virtual serial port for testing
 
@@ -66,16 +66,16 @@ These instructions come from [stack overflow](https://stackoverflow.com/question
 
 #### throttle_cmd_1.py Run Tips
 
-You need at least ~40-45 seconds between your START command and the first set engine RPM command. I tested the program with the simulate engine mode and it works. If you change the RPM on the GSU, the next RPM command just overwrites your change. If you shut the engine down on the GSU, it will remain off while new RPM commands are being sent. 
+You need at least ~40-45 seconds between your START command and the first set engine RPM command. I tested the program with the simulate engine mode and it works. If you change the RPM on the GSU, the next RPM command just overwrites your change. If you shut the engine down on the GSU, it will remain off while new RPM commands are being sent.
 
-#### throttle_cmd_1.py Notes
+The engine should be primed with the GSU before this program is ran so that it has fuel and quickly allows RPM commands.
 
-This program should work with the engine now.
+#### throttle_cmd_1.py General Notes
 
-Byte stuffing should be totally done. Timing used to be bad because I had `ser.read(100)` set, with a timeout of 2 seconds, so the program would just halt at the read statement and wait for 100 bytes for 2 seconds. Fixed this with `ser.read(ser.in_waiting)`.
+Byte stuffing is totally done. Timing used to be bad because I had `ser.read(100)` set, with a timeout of 2 seconds, so the program would just halt at the read statement and wait for 100 bytes for 2 seconds. Fixed this with `ser.read(ser.in_waiting)`.
 
 ## TODO:
 
 - `throttle_cmd_1.py` and `read_port.py`: Timestamps with the processed data somehow? Save to another file while also saving the PRO-Interface data to a file? There should be a time column in the `./decoded_data/XXXX-XX-XX/XXXX.csv` data files
 - `throttle_cmd_1.py`: There really is no reason to figure out what the engine control commands are while the engine is running. This should really all be calculated before the engine is started and then pulled from storage to send. But probably fast enough so that it does not matter.
-- Organize the code
+- CFFI on Windows?

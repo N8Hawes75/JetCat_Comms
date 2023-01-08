@@ -16,9 +16,6 @@ import serial
 import time
 
 import modules.throttle_help as throttle_help
-from cffi import FFI
-from _crc.lib import get_crc16z
-
 
 # Create log filename
 filename = throttle_help.make_filename()
@@ -63,6 +60,7 @@ with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=.25) as ser, \
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
+            print(now)
         throttle_help.stop_engine(ser)
 
     else:
