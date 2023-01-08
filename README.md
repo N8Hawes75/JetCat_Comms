@@ -1,9 +1,10 @@
 # JetCat Comms Project
+
 Created Repo on 11/11/2022
 
 
 ## Setup Help
-------------
+
 ```
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
@@ -18,8 +19,8 @@ To save matplotlib animations you must install ffmpeg in ubuntu terminal
 sudo apt install ffmpeg
 ```
 Other modules included in `requirements.txt`
+
 ## throttle_cmd_1.py
-------------
 
 This program is for sending throttle commands to the PRO-Interface while also logging all the data from the serial port. The commands are received through a .txt file that follows this format:
 ```
@@ -31,6 +32,7 @@ Time, Throttle_RPM
 180,0
 ```
 The first RPM command needs a significant amount of time from start to allow the engine to start. The engine should be primed with the GSU 
+
 #### throttle_cmd_1.py virtual serial port for testing
 
 To test the program, you should open a virtual serial port to make sure the proper commands are being sent. To create a virtual serial port, open a terminal and enter
