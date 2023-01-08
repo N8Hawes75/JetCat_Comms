@@ -3,7 +3,8 @@
 
 """
 Same as example3_logging.py, but with a built-in close timer for testing.
-Run a 10 minute test and see how many bytes are saved to file
+Run a 10 minute test and see how many bytes are saved to file. Attempt to
+animate and display data live.
 """
 
 from threading import Thread
