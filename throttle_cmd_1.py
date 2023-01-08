@@ -31,7 +31,7 @@ time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
 
 print("Connecting to port...")
-with serial.Serial('/dev/pts/3', baudrate=115200, timeout=.25) as ser, \
+with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=.25) as ser, \
     open(filename, 'ab') as file:
 
     start_input = input("Connected to port. Are you ready to start the engine? [y/n] ")
@@ -63,7 +63,7 @@ with serial.Serial('/dev/pts/3', baudrate=115200, timeout=.25) as ser, \
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
-        throttle_help.stop_engine()
+        throttle_help.stop_engine(ser)
 
     else:
         print("Not starting engine. Bye.")
