@@ -31,10 +31,10 @@ time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
 
 print("Connecting to port...")
-with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
+with serial.Serial('/dev/pts/3', baudrate=115200, timeout=.25) as ser, \
     open(filename, 'ab') as file:
 
-    start_input = input("Connected to port. Are you ready to start the engine? [y/n]")
+    start_input = input("Connected to port. Are you ready to start the engine? [y/n] ")
 
     if start_input == "y":
         throttle_help.start_countdown()
@@ -48,7 +48,8 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
         while now < end_time:
 
             # Write data to log file
-            serial_port_data = ser.read(100)
+
+            serial_port_data = ser.read(ser.in_waiting)
             file.write(serial_port_data)
 
             # If enough time has elapsed, send a throttle command
@@ -62,6 +63,7 @@ with serial.Serial('/dev/pts/4', baudrate=115200, timeout=2) as ser, \
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
+        throttle_help.stop_engine()
 
     else:
         print("Not starting engine. Bye.")

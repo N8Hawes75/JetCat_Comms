@@ -62,6 +62,9 @@ def start_engine(ser):
     # Command to start the P300-PRO with binary serial interface:
     ser.write(b"\x7E\x01\x01\x01\x01\x02\x00\x01\x28\x30\x7E")
 
+def stop_engine(ser):
+    ser.write(b"\x7E\x01\x01\x01\x01\x02\x00\x00\x39\xB9\x7E")
+
 def send_throttle_rpm(ser, throttle_rpm, sequence_no):
     # Send the P300-PRO any throttle command.
 
@@ -105,7 +108,7 @@ def send_throttle_rpm(ser, throttle_rpm, sequence_no):
     header_send = b'\x7E' + header_stuffed + b'\x7E'
 
 
-    print("Full header_send:", header_stuffed)
+    print("Full header_send:", header_send)
     ser.write(header_send)
 
 
