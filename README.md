@@ -9,12 +9,12 @@ Created Repo on 11/11/2022
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
 
-Ubuntu also required dev tools for c to be installed for fcci to work. Run
+Ubuntu also required dev tools for c to be installed for FCCI to work. Run
 ```
 sudo apt-get update && sudo apt-get install build-essential
 ```
 
-To save matplotlib animations you must install ffmpeg in ubuntu terminal
+To save Matplotlib animations you must install ffmpeg in ubuntu terminal
 ```
 sudo apt install ffmpeg
 ```
