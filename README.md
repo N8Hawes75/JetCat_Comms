@@ -17,7 +17,7 @@ To save matplotlib animations you must install ffmpeg in ubuntu terminal
 ```
 sudo apt install ffmpeg
 ```
-
+Other modules included in `requirements.txt`
 ## throttle_cmd_1.py
 ------------
 
