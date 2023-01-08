@@ -32,7 +32,6 @@ Time, Throttle_RPM
 ```
 The first RPM command needs a significant amount of time from start to allow the engine to start. The engine should be primed with the GSU 
 #### throttle_cmd_1.py virtual serial port for testing
-------------
 
 To test the program, you should open a virtual serial port to make sure the proper commands are being sent. To create a virtual serial port, open a terminal and enter
 ```
@@ -58,14 +57,12 @@ To see the serial data in binary.
 These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
 
 #### throttle_cmd_1.py CFFI
-------------
 
 To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory for some reason. This will compile the library you need to include inside of `throttle_cmd_1.py`.
 
 This is a bit of a mess right now. Run `main.py` to create the python .so library, then run `throttle_cmd_1.py` in the root directory as well so that it can view the .so c extension.
 
 #### throttle_cmd_1.py TODO
-------------
 
 This program should work with the engine now. There really is no reason to figure out what the engine control commands are while the engine is running. This should really all be calculated before the engine is started and then pulled from storage to send. But probably fast enough so that it does not matter.
 
