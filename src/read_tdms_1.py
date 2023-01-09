@@ -38,10 +38,12 @@ if file_type == "MCC":
     mcc_timechannel = mcc_group1["TimeStamps"]
     mcc_tempchannel1 = mcc_group1["AI0"]
     mcc_tempchannel2 = mcc_group1["AI1"]
+    mcc_tempchannel3 = mcc_group1["AI2"]
     # These are numpy ndarrays
     mcc_time = mcc_timechannel[:]
     mcc_temp1 = mcc_tempchannel1[:]
     mcc_temp2 = mcc_tempchannel2[:]
+    mcc_temp3 = mcc_tempchannel3[:]
 
     # Data pulled from file, just plot it now:
 
@@ -75,6 +77,14 @@ if file_type == "MCC":
     fig_path = os.path.join(FILE_PATH, "temp2_v_time.png")
     plt.savefig(fig_path, dpi=600)
 
+    plt.figure()
+    plt.plot(mcc_time, mcc_temp3, 'red')
+    plt.title('DAQami E-TC')
+    plt.xlabel('Time [s]')
+    plt.ylabel('Temperature [degC]')
+    plt.tight_layout()
+    fig_path = os.path.join(FILE_PATH, "temp3_v_time.png")
+    plt.savefig(fig_path, dpi=600)
 
     fig, ax1 = plt.subplots()
     ax1.plot(mcc_time, mcc_temp1, 'blue')

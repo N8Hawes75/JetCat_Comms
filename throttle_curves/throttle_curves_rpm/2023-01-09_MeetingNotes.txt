@@ -1,3 +1,0 @@
-Meeting with ResCon guys
-
-Focus on display, displaying the data. Doesn't have to be live, can take data from engine and put it in a ROS bag and then animate it.
