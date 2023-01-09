@@ -35,7 +35,7 @@ u_int16_t crc16_update ( u_int16_t crc, u_int8_t data )
 // Function to compute CRC16:
 // *p : pointer to first data byte
 // len: Number of data bytes
-// return value is CRC16 over source data p[0]… p[len-1]
+// return value is CRC16 over source data p[0]... p[len-1]
 u_int16_t get_crc16z(u_int8_t *p, u_int16_t len)
 {
 	u_int16_t crc16_data=0;
