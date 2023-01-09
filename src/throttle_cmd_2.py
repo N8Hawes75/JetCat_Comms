@@ -30,17 +30,7 @@ cmd_length = cmd_array.shape[0]
 time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
 
-for i in range(cmd_length):
-
-
-
-
-
-
-
-
-
-
+cmd_packet = throttle_help.calculate_throttle_cmds(cmd_array)
 
 
 

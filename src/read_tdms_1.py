@@ -7,9 +7,6 @@ import datetime
 from nptdms import TdmsFile
 from nptdms import tdms
 
-# Program is to be ran in project root directory, JetCat_Comms
-
-
 # Input the location of your TDMS file:
 data_filename = input("Paste in FULL path to TDMS file... :\n")
 

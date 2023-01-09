@@ -143,3 +143,51 @@ def stuff_header(header_bytes):
 
     stuffed_header = bytes(byte_array1)
     return(stuffed_header)
+
+
+
+
+def calculate_throttle_cmds():
+    # Send the P300-PRO any throttle command.
+
+    # Jetcat documentation:
+    """
+    Command Message for engine Rpm control/demand
+    Message Descriptor: 0x0102
+    No of data bytes in message: 2
+    Data interpretation: uint16_t
+    Scale: 10x RPM
+    Range: 0-300000 RPM
+
+    If demanded RPM should be out of allowed range of engine, value would
+    be automatically limited to possible/allowed range!
+    """
+
+    # If you want to send the throttle 100000 to the engine, you actually
+    # send the integer 10000, because uint16_t's maximum decimal value is
+    # 65535.
+    rpm_to_send = throttle_rpm // 10 # Truncate off decimal place
+    rpm_bytes = (rpm_to_send.item()).to_bytes(2, 'big')
+
+    sequence_no_bytes = sequence_no.to_bytes(1, 'big')
+
+    # header without stuffing or crc16
+    header_basic = b'\x01\x01\x02' + sequence_no_bytes + b'\x02' + rpm_bytes
+
+    # Calculate the crc16 from the basic header
+    header_basic_c = ffibuilder.new("char[]", header_basic)
+    crc16_calc = get_crc16z(header_basic_c, len(header_basic_c)-1)
+    crc16_bytes = crc16_calc.to_bytes(2, 'big')
+
+    # Append the crc16 bytes to the end of the basic header
+    header_unstuffed = header_basic + crc16_bytes
+
+    print("RPM to send:", rpm_bytes)
+    print("CRC16 decimal:", crc16_calc)
+    print("CRC16 hex:", crc16_bytes)
+    # Need to stuff the header data in case there are any 0x7E or 0x7D bytes
+    header_stuffed = stuff_header(header_unstuffed)
+    header_send = b'\x7E' + header_stuffed + b'\x7E'
+
+
+    print("Full header_send:", header_send)
