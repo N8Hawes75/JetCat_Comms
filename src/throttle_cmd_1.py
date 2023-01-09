@@ -60,7 +60,6 @@ with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=.25) as ser, \
                 cmd_counter = cmd_counter + 1
 
             now = time.time()
-            print(now)
         throttle_help.stop_engine(ser)
 
     else:
