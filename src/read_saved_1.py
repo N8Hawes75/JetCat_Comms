@@ -13,7 +13,7 @@ from _crc.lib import pi_approx, get_crc16z
 
 ffibuilder = FFI()
 
-file_name = "/home/colton/Documents/Python_Projects/JetCat_Comms/data/2022-12-14 Test Data/Interface Data/2022-12-14/2022-12-14_163144_read_port"
+file_name = input("Enter full path to bin file: ")
 folder_input = input("Enter description for image folder: ")
 
 with open(file_name, 'rb',) as file:
