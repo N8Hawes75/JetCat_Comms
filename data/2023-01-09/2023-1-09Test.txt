@@ -1,0 +1,82 @@
+
+(.venv) colton@colton-Vivobook-ASUSLaptop-X3400PA-K3400PA:~/Documents/Python_Projects/JetCat_Comms$ sudo /home/colton/Documents/Python_Projects/JetCat_Comms/.venv/bin/python /home/colton/Documents/Python_Projects/JetCat_Comms/src/throttle_cmd_1.py
+Input command file path: /home/colton/Documents/Python_Projects/JetCat_Comms/throttle_curves/throttle_curves_rpm/curve
+Reading Command file...
+Test will last 270 seconds
+Connecting to port...
+Connected to port. Are you ready to start the engine? [y/n] y
+STARTING ENGINE IN 10...
+STARTING ENGINE IN 9...
+STARTING ENGINE IN 8...
+STARTING ENGINE IN 7...
+STARTING ENGINE IN 6...
+STARTING ENGINE IN 5...
+STARTING ENGINE IN 4...
+STARTING ENGINE IN 3...
+STARTING ENGINE IN 2...
+STARTING ENGINE IN 1...
+STARTING ENGINE!
+Starting time:  1673283676.3040617
+Sent cmd at: 1673283736.304064
+Time: 60
+Throttle_RPM: 100000
+RPM to send: b"'\x10"
+CRC16 decimal: 23247
+CRC16 hex: b'Z\xcf'
+Full header_send: b"~\x01\x01\x02\x01\x02'\x10Z\xcf~"
+
+Sent cmd at: 1673283766.3040645
+Time: 90
+Throttle_RPM: 60000
+RPM to send: b'\x17p'
+CRC16 decimal: 43686
+CRC16 hex: b'\xaa\xa6'
+Full header_send: b'~\x01\x01\x02\x02\x02\x17p\xaa\xa6~'
+
+Sent cmd at: 1673283796.304064
+Time: 120
+Throttle_RPM: 34000
+RPM to send: b'\rH'
+CRC16 decimal: 25399
+CRC16 hex: b'c7'
+Full header_send: b'~\x01\x01\x02\x03\x02\rHc7~'
+
+Sent cmd at: 1673283826.3040633
+Time: 150
+Throttle_RPM: 34000
+RPM to send: b'\rH'
+CRC16 decimal: 13334
+CRC16 hex: b'4\x16'
+Full header_send: b'~\x01\x01\x02\x04\x02\rH4\x16~'
+
+Sent cmd at: 1673283856.3040638
+Time: 180
+Throttle_RPM: 60000
+RPM to send: b'\x17p'
+CRC16 decimal: 64903
+CRC16 hex: b'\xfd\x87'
+Full header_send: b'~\x01\x01\x02\x05\x02\x17p\xfd\x87~'
+
+Sent cmd at: 1673283886.3040633
+Time: 210
+Throttle_RPM: 100000
+RPM to send: b"'\x10"
+CRC16 decimal: 3566
+CRC16 hex: b'\r\xee'
+Full header_send: b"~\x01\x01\x02\x06\x02'\x10\r\xee~"
+
+Sent cmd at: 1673283916.304063
+Time: 240
+Throttle_RPM: 60000
+RPM to send: b'\x17p'
+CRC16 decimal: 50417
+CRC16 hex: b'\xc4\xf1'
+Full header_send: b'~\x01\x01\x02\x07\x02\x17p\xc4\xf1~'
+
+Sent cmd at: 1673283936.304064
+Time: 260
+Throttle_RPM: 34000
+RPM to send: b'\rH'
+CRC16 decimal: 41762
+CRC16 hex: b'\xa3"'
+Full header_send: b'~\x01\x01\x02\x08\x02\rH\xa3"~'
