@@ -1,0 +1,29 @@
+Log name: 02/10/2023 01:04:02 PM
+User: Colton
+Project name: Untitled 1
+File name: C:\Users\Colton\Documents\SignalExpress Data\02102023_010402_PM\Voltage.tdms
+File size: 16.6508MB
+Log duration: 18 minutes, 45.4 seconds
+Log dt (s): 1m
+Log iteration length (s): 100m
+Number of sample in log: 1125400
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 2/10/2023 13:04:07.229
+Time zone: Eastern Standard Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     02/10/2023 01:04:02 PM - Voltage - Dev1_ai1
+     02/10/2023 01:04:02 PM - Voltage - Dev1_ai2
+
+
+Alarms:
+None
+
+Start conditions:
+None
+
+Stop conditions:
+None
