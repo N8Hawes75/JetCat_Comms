@@ -12,7 +12,7 @@ from _crc.lib import get_crc16z
 ffibuilder = FFI()
 
 
-def make_filename():
+def make_filename(descrip):
     # Create directory & filename for the log file
     now = datetime.datetime.today()
     now = now.strftime("%Y-%m-%d")
@@ -20,7 +20,7 @@ def make_filename():
     os.makedirs(FILE_PATH, exist_ok=True)
     now = datetime.datetime.today()
     now = now.strftime("%Y-%m-%d_T%H%M%S")
-    filename = os.path.join(FILE_PATH, (now + "_log"))
+    filename = os.path.join(FILE_PATH, (now + "_" + descrip ))
     return filename
 
 def read_throttle_rpm_cmds(file_path):
@@ -65,7 +65,7 @@ def start_engine(ser):
 def stop_engine(ser):
     ser.write(b"\x7E\x01\x01\x01\x01\x02\x00\x00\x39\xB9\x7E")
 
-def send_throttle_rpm(ser, throttle_rpm, sequence_no):
+def send_throttle_rpm(ser, log_file, throttle_rpm, sequence_no):
     # Send the P300-PRO any throttle command.
 
     # Jetcat documentation:
@@ -100,9 +100,9 @@ def send_throttle_rpm(ser, throttle_rpm, sequence_no):
     # Append the crc16 bytes to the end of the basic header
     header_unstuffed = header_basic + crc16_bytes
 
-    print("RPM to send:", rpm_bytes)
-    print("CRC16 decimal:", crc16_calc)
-    print("CRC16 hex:", crc16_bytes)
+    print_and_log(log_file, ("RPM to send:" + str(rpm_bytes)))
+    print_and_log(log_file, ("CRC16 decimal:" + str(crc16_calc)))
+    print_and_log(log_file, ("CRC16 hex:" + str(crc16_bytes)))
     # Need to stuff the header data in case there are any 0x7E or 0x7D bytes
     header_stuffed = stuff_header(header_unstuffed)
     header_send = b'\x7E' + header_stuffed + b'\x7E'
@@ -191,3 +191,14 @@ def calculate_throttle_cmds():
 
 
     print("Full header_send:", header_send)
+
+def write_curve_to_log(log_file, cmd_file_path):
+    with open(cmd_file_path, 'r') as cmds:
+        for line in cmds:
+            log_file.write(line)
+    log_file.write("\n\n")
+
+def print_and_log(log_file, to_print):
+    log_file.write(to_print + "\n")
+    print(to_print)
+

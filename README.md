@@ -60,7 +60,7 @@ Python can then connect to /dev/pts/5 and any commands sent over this port will 
 ```
 cat < /dev/pts/4 | hexdump -C
 ```
-To see the serial data in binary.
+To see the serial command data in binary.
 
 These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
 
