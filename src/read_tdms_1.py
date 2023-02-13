@@ -24,7 +24,7 @@ filename = os.path.join(FILE_PATH, (now_more + "_read_port"))
 tdms_data = TdmsFile.read(data_filename)
 
 for group in tdms_data.groups():
-    # Determine if this is a thermocouple (MCCDAQ) or Load Cell (NI DAQ) TDMS
+    # Determine if this is a thermocouple (MCCDAQ) or Load Cell (NI DAQ) TDMSVoltage.tdms
     if group.name == "Analog":
         file_type = "MCC"
     else:
@@ -138,3 +138,5 @@ if file_type == "NI":
     fig_path = os.path.join(FILE_PATH, "load_v_time.png")
     plt.savefig(fig_path, dpi=600)
     plt.show()
+
+
