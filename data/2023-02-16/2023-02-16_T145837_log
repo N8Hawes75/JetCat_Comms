@@ -1,0 +1,16 @@
+Time, Throttle_RPM
+0,35000
+25, 40000
+60, 80000
+80, 40000
+120, 0
+
+Starting time: 1676577541.0657644
+Sent cmd at:1676577566.0657668
+Time:25
+Throttle_RPM:64
+RPM to send:b'\x00\x06'
+CRC16 decimal:16707
+CRC16 hex:b'AC'
+
+

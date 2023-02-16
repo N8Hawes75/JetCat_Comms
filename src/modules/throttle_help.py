@@ -28,7 +28,11 @@ def read_throttle_rpm_cmds(file_path):
     # Column 1 is time, column 2 is throttle %.
     print("Reading Command file...")
     frame = pd.read_csv(file_path)
+    # Allow for expressions in the text file e.g. 25+60
+    frame = frame.applymap(lambda x: eval(x) if isinstance(x, str) else x )
     cmd_array = frame.to_numpy()
+    print(type(cmd_array[3, 0]))
+    print(type(cmd_array[3,1]))
     return cmd_array
 
 def start_countdown():
