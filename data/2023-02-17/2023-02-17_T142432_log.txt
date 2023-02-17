@@ -1,32 +1,33 @@
 Time, Throttle_RPM
 0,35000
-25, 40000
-60, 80000
-80, 40000
-120, 0
+2, 40000
+3, 80000
+4, 40000
+6, 0
 
-Starting time: 1676573758.209617
-Sent cmd at:1676573783.2096179
-Time:25
+Starting time: 1676661896.0436466
+Sent cmd at:1676661898.0436475
+Time:2
 Throttle_RPM:40000
 RPM to send:b'\x0f\xa0'
 CRC16 decimal:695
 CRC16 hex:b'\x02\xb7'
 
 
-Sent cmd at:1676573818.2096176
-Time:60
+Sent cmd at:1676661899.043648
+Time:3
 Throttle_RPM:80000
 RPM to send:b'\x1f@'
 CRC16 decimal:21989
 CRC16 hex:b'U\xe5'
 
 
-Sent cmd at:1676573838.2096174
-Time:80
+Sent cmd at:1676661900.0436485
+Time:4
 Throttle_RPM:40000
 RPM to send:b'\x0f\xa0'
 CRC16 decimal:15297
 CRC16 hex:b';\xc1'
 
 
+Stop time:1676661902.043649

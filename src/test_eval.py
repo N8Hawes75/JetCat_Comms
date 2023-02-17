@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+import os
 
 
 # cmd_file_path = input("Input command file path: ")
@@ -20,18 +20,16 @@ def modify_value(value):
 
 
     if isinstance(value, str):
-        print("Value is a string: ", value)
 
         if "%" in value:
             value = float(value.strip('%'))
             value = 700*value + 34000 # Map 0% to 34000rpm, 100% to 104000rpm
             value = str(value)
-            
-        if "+" in value:
+
+        if ("+" in value) or ("(" in value):
             value = eval(value)
 
 
-    print("Returning: ", value)
     return value
 
 a1 = np.array([[1,2],[3,4],[5,6],[7,8],[9,10]])
@@ -57,3 +55,16 @@ print("f4:\n", f4)
 
 a4 = f4.to_numpy()
 print("a4:\n", a4)
+
+path = './folder1/folder2/file.txt'
+second_to_last = os.path.sep.join(os.path.abspath(path).split(os.path.sep)[-2:])
+second_to_last = os.path.sep + second_to_last
+
+print(second_to_last) # Outputs '/folder2/file.txt'
+
+def save_to_t7(data_filename, log_filename):
+    print("Copy files to T7")
+    full_path_to_T7 = "/media/colton/JetCat_Data"
+    test = os.path.basename(os.path.normpath('/folderA/folderB/folderC/folderD/'))
+    shutil.copy2(data_filename, os.join(full_path_to_T7, ) )
+

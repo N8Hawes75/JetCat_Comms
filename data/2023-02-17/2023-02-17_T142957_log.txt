@@ -1,13 +1,13 @@
 Time, Throttle_RPM
 0,35000
 25, 40000
-(25+5), 80000
-(25+10), 40000
-(25+15), 81%
-(25+20), 0
+25+5, 80000
+25+10, 40000
+25+15, 81%
+25+20, 0
 
-Starting time: 1676650759.2814136
-Sent cmd at:1676650784.2814164
+Starting time: 1676662208.5212991
+Sent cmd at:1676662233.5213008
 Time:25
 Throttle_RPM:40000
 RPM to send:b'\x0f\xa0'
@@ -15,7 +15,7 @@ CRC16 decimal:695
 CRC16 hex:b'\x02\xb7'
 
 
-Sent cmd at:1676650789.2814138
+Sent cmd at:1676662238.5213006
 Time:30
 Throttle_RPM:80000
 RPM to send:b'\x1f@'
@@ -23,7 +23,7 @@ CRC16 decimal:21989
 CRC16 hex:b'U\xe5'
 
 
-Sent cmd at:1676650794.281414
+Sent cmd at:1676662243.5213013
 Time:35
 Throttle_RPM:40000
 RPM to send:b'\x0f\xa0'
@@ -31,7 +31,7 @@ CRC16 decimal:15297
 CRC16 hex:b';\xc1'
 
 
-Sent cmd at:1676650799.2814145
+Sent cmd at:1676662248.5213015
 Time:40
 Throttle_RPM:90700
 RPM to send:b'#n'
@@ -39,4 +39,4 @@ CRC16 decimal:51457
 CRC16 hex:b'\xc9\x01'
 
 
-Stop time:1676650804.2814178
+Stop time:1676662253.5213027

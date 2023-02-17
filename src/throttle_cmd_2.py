@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 import serial
 import time
+import shutil
 
 import modules.throttle_help as throttle_help
 
@@ -25,16 +26,16 @@ data_filename = throttle_help.make_filename("data")
 # Create 
 log_filename = throttle_help.make_filename("log.txt")
 
+# Ask if you're using a external ssd to backup data
+is_using_external_disk = input("Is the T7 plugged in to backup your data? [y/n]: ")
+
 # Open throttle curve request file.
 cmd_file_path = input("Input command file path: ")
 
 cmd_array = throttle_help.read_throttle_rpm_cmds(cmd_file_path)
-print(cmd_array)
 cmd_length = cmd_array.shape[0]
 time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
-
-
 
 print("Connecting to port...")
 with serial.Serial('/dev/pts/7', baudrate=115200, timeout=.25) as ser, \
@@ -77,3 +78,5 @@ with serial.Serial('/dev/pts/7', baudrate=115200, timeout=.25) as ser, \
     else:
         throttle_help.print_and_log(log_file, "Not starting engine. Bye.")
 
+if is_using_external_disk=='y':
+    throttle_help.save_to_t7(data_filename, log_filename)

@@ -1,6 +1,7 @@
 import os
 import datetime
 import time
+import shutil
 
 import pandas as pd
 import numpy as np
@@ -28,9 +29,7 @@ def modify_value(value):
     # a % is there, and change it to a RPM command instead of % command.
     # also evaluate expressions so that 25+60 is just 85
 
-
     if isinstance(value, str):
-        print("Value is a string: ", value)
 
         if "%" in value:
             value = float(value.strip('%'))
@@ -41,8 +40,6 @@ def modify_value(value):
         if "+" in value:
             value = eval(value)
 
-
-    print("Returning: ", value)
     return value
 
 def read_throttle_rpm_cmds(file_path):
@@ -52,10 +49,7 @@ def read_throttle_rpm_cmds(file_path):
     frame = pd.read_csv(file_path)
     # Allow for expressions in the text file e.g. 25+60
     frame = frame.applymap(modify_value)
-    print("frame after mapping: ", frame)
     cmd_array = frame.to_numpy(dtype='i')
-    print(type(cmd_array[3, 0]))
-    print(type(cmd_array[3,1]))
     return cmd_array
 
 def start_countdown():
@@ -228,4 +222,23 @@ def write_curve_to_log(log_file, cmd_file_path):
 def print_and_log(log_file, to_print):
     log_file.write(to_print + "\n")
     print(to_print)
+
+def save_to_t7(data_filename, log_filename):
+    print("Copying files to T7... ", end="")
+
+    # Make a directory in the T7 to save files into
+    t7 = "/media/colton/T7/JetCat_Data"
+    second_to_last = os.path.dirname(os.path.abspath(data_filename)).split(os.path.sep)[-1:]
+    second_to_last = os.path.sep.join(second_to_last)
+    full_t7 = os.path.join(t7, second_to_last)
+    os.makedirs(full_t7, exist_ok=True)
+
+    # Make path for new T7 files
+    t7_data = os.path.join(full_t7, os.path.basename(os.path.normpath(data_filename)))
+    t7_log = os.path.join(full_t7, os.path.basename(os.path.normpath(log_filename)))
+
+    # Save files
+    shutil.copy2(data_filename, t7_data)
+    shutil.copy2(log_filename, t7_log)
+    print("done")
 
