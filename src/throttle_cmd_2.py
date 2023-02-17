@@ -13,11 +13,8 @@ compiled in order to run this program.
 
 """
 
-import numpy as np
-import pandas as pd
 import serial
 import time
-import shutil
 
 import modules.throttle_help as throttle_help
 
