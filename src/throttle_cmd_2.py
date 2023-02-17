@@ -29,6 +29,7 @@ log_filename = throttle_help.make_filename("log.txt")
 cmd_file_path = input("Input command file path: ")
 
 cmd_array = throttle_help.read_throttle_rpm_cmds(cmd_file_path)
+print(cmd_array)
 cmd_length = cmd_array.shape[0]
 time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
@@ -36,7 +37,7 @@ print("Test will last", time_to_kill, "seconds")
 
 
 print("Connecting to port...")
-with serial.Serial('/dev/pts/5', baudrate=115200, timeout=.25) as ser, \
+with serial.Serial('/dev/pts/7', baudrate=115200, timeout=.25) as ser, \
     open(data_filename, 'ab') as dat_file, \
     open(log_filename, 'a') as log_file:
 

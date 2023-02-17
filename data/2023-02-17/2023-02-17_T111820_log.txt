@@ -5,3 +5,5 @@ Time, Throttle_RPM
 (25+10), 40000
 (25+15), 81%
 (25+20), 0
+
+Not starting engine. Bye.

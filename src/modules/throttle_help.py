@@ -23,14 +23,37 @@ def make_filename(descrip):
     filename = os.path.join(FILE_PATH, (now + "_" + descrip ))
     return filename
 
+def modify_value(value):
+    # This function will be applied to each value in the csv file. So check if
+    # a % is there, and change it to a RPM command instead of % command.
+    # also evaluate expressions so that 25+60 is just 85
+
+
+    if isinstance(value, str):
+        print("Value is a string: ", value)
+
+        if "%" in value:
+            value = float(value.strip('%'))
+            value = 700*value + 34000 # Map 0% to 34000rpm, 100% to 104000rpm
+            value = round(value)
+            value = str(value)
+            
+        if "+" in value:
+            value = eval(value)
+
+
+    print("Returning: ", value)
+    return value
+
 def read_throttle_rpm_cmds(file_path):
     # Read the throttle commands out of a text file.
     # Column 1 is time, column 2 is throttle %.
     print("Reading Command file...")
     frame = pd.read_csv(file_path)
     # Allow for expressions in the text file e.g. 25+60
-    frame = frame.applymap(lambda x: eval(x) if isinstance(x, str) else x )
-    cmd_array = frame.to_numpy()
+    frame = frame.applymap(modify_value)
+    print("frame after mapping: ", frame)
+    cmd_array = frame.to_numpy(dtype='i')
     print(type(cmd_array[3, 0]))
     print(type(cmd_array[3,1]))
     return cmd_array

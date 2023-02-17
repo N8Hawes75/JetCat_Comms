@@ -25,7 +25,8 @@ def modify_value(value):
         if "%" in value:
             value = float(value.strip('%'))
             value = 700*value + 34000 # Map 0% to 34000rpm, 100% to 104000rpm
-        
+            value = str(value)
+            
         if "+" in value:
             value = eval(value)
 
