@@ -1,0 +1,36 @@
+Time, Throttle_RPM
+0,35000
+90, 100000
+90+180, 75000
+90+180+60, 50000
+90+180+60+1200, 90000
+90+180+60+1200+60, 75000
+90+180+60+1200+60+60, 100000
+90+180+60+1200+60+60+60, 35000
+90+180+60+1200+60+60+60+120, 0
+
+Starting time: 1677090450.3121595
+Sent cmd at:1677090540.312161
+Time:90
+Throttle_RPM:100000
+RPM to send:b"'\x10"
+CRC16 decimal:23247
+CRC16 hex:b'Z\xcf'
+
+
+Sent cmd at:1677090720.3121622
+Time:270
+Throttle_RPM:75000
+RPM to send:b'\x1dL'
+CRC16 decimal:44089
+CRC16 hex:b'\xac9'
+
+
+Sent cmd at:1677090780.3121603
+Time:330
+Throttle_RPM:50000
+RPM to send:b'\x13\x88'
+CRC16 decimal:43706
+CRC16 hex:b'\xaa\xba'
+
+

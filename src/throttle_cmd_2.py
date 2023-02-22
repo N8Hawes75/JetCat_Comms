@@ -35,7 +35,7 @@ time_to_kill = cmd_array[(cmd_length-1),0] # Seconds after start to kill engine
 print("Test will last", time_to_kill, "seconds")
 
 print("Connecting to port...")
-with serial.Serial('/dev/pts/7', baudrate=115200, timeout=.25) as ser, \
+with serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=.25) as ser, \
     open(data_filename, 'ab') as dat_file, \
     open(log_filename, 'a') as log_file:
 
