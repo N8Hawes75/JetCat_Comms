@@ -22,56 +22,45 @@ def bin_to_frame(data_file_path):
     with open(data_file_path, 'rb',) as file:
         my_bytes = file.read()
 
-        printfirst = 1
         list_of_list = []
-        data_packet = bytearray(80) # initialize byte array with 80 values
-        clipped_unstuffed_line = bytearray()
-        count = 0
-        for i in range(0, len(my_bytes)-100): # Skip putty header and last bytes
+        data_packet = bytearray() # initialize byte array
+        i = 0
+        while i < len(my_bytes)-1:
+
             if (my_bytes[i] == 0x7E and my_bytes[i+1] == 0x7E):
                 # Two 7E in a row, new data packet starts at i+1
-                j = 0
-                i = i + 2
-                while(my_bytes[i+j] != 0x7E ):
-                    data_packet[j] = my_bytes[i+j] # No framing bytes included
-                    j = j+1
+                j = my_bytes.find(bytes([0x7E]), i+2)
+                if (j == -1): # Break if it cannot find 0x7E anywhere
+                    print("Break")
+                    break
+                data_packet = my_bytes[i+2:j] # This is a data packet with no framing bytes
+                data_packet = bytearray(data_packet)
 
                 # CRC16 calculation:
-                clipped_data = bytearray(j-2)
-                for i in range(j-2):
-                    clipped_data[i] = data_packet[i]
-                datastring = bytes(clipped_data)
+                datastring = bytes(data_packet)
+                # print("Datastring: ", datastring)
+                # print("len(datastring)", len(datastring))
                 data = ffibuilder.new("char[]", datastring)
-                length_line = j-2
-                crc16_calculation = get_crc16z(data, length_line)
+                crc16_calculation = get_crc16z(data, len(datastring))
 
                 # Unstuff the data packet for processing
+                # print(i)
+
                 unstuffed_line = byte_unstuffing(data_packet)
-                print(data_packet)
-                decoded_numbers = decode_line(unstuffed_line)
-                decoded_numbers.append(crc16_calculation)
 
-                # print("\nData packet read this loop: ")
-                # print(data_packet)
-                # print("Unsuffed line: ")
-                # print(unstuffed_line)
-                # print("Data sent to crc16: ", datastring)
-                # print("Length of data sent to crc16: ", length_line)
-                
-                
-                list_of_list.append(decoded_numbers)
-                # print("CRC given: ", decoded_numbers[len(decoded_numbers)-2])
-                # print("CRC calculated: ", decoded_numbers[len(decoded_numbers)-1])
+                # print("unstuffed_line: ", unstuffed_line)
+                # print("len(unstuffed_line): ", len(unstuffed_line))
 
-                # help_cw.check_crcs(decoded_numbers)
+                if len(unstuffed_line) == 33:
+                    decoded_numbers = decode_line(unstuffed_line)
+                    decoded_numbers.append(crc16_calculation)
+                    list_of_list.append(decoded_numbers)
+                else:
+                    print("Error, wrong length at i =", i)
+                i=j
 
-                # Reset data packet to all zero's
-                for i in range(len(data_packet)):
-                    data_packet[i] = 0
-                
-                datastring=0
-                count = count + 1
-                # print("Count: ", count)
+            else:
+                i = i+1
 
         # We have now looped through all bytes in putty log, and have a list of all
         # the data. Save interpreted data into a data frame.
@@ -92,26 +81,36 @@ def byte_unstuffing(byte_array):
     # TODO: Test this function. If it does not work, engine data will become
     # corrupted.
 
-    for i in range(len(byte_array)-1):
+    i = 0
+    while i < len(byte_array)-1:
 
         # "If 0x7D should be transmitted, transmit two bytes: 0x7D and 0x5D"
         # This is from JetCat documentation
         if(byte_array[i]==0x7D and byte_array[i+1]==0x5D):
-            # Delete the extra byte
-            del byte_array[i+1]
-            # Append so that byte_array does not lose length. Code will
-            # fail if this is not done.
-            byte_array.append(0x00)
-
+            # print("Unstuff!")
+            # Delete the extra byte if not at the end of the array
+            if i+2 < len(byte_array):
+                byte_array.pop(i+1)
+            else:
+                byte_array.pop(i+1)
+                break
+            i -= 1  # decrement i to re-check the current byte
 
         # "If 0x7E should be transmitted, transmit two bytes: 0x7D and 0x5E"
         # This is from JetCat documentation
-        if(byte_array[i]==0x7D and byte_array[i+1]==0x5E):
+        elif(byte_array[i]==0x7D and byte_array[i+1]==0x5E):
+            # print("Unstuff")
             # Replace two bytes with 0x7E
             byte_array[i] = 0x7E
-            del byte_array[i+1]
-            byte_array.append(0x00)
+            # Delete the extra byte if not at the end of the array
+            if i+2 < len(byte_array):
+                byte_array.pop(i+1)
+            else:
+                byte_array.pop(i+1)
+                break
+            i -= 1  # decrement i to re-check the current byte
 
+        i += 1
 
     return byte_array
 
@@ -171,7 +170,7 @@ def decode_line(byte_array):
     values[17] *= 0.1  # pwm_thr
     values[18] *= 0.1  # pwm_aux
 
-    print(decoded_packet)
-    print(values)
+    # print("decoded_packet: ", decoded_packet)
+    # print("values: ", values)
 
     return decoded_packet

@@ -14,9 +14,42 @@ import os
 
 import modules.data_analysis_m1 as m1
 
-# Let's first look at the PRO-Interface data from the longest run of 2/22/2023
 
+# Let's first look at the PRO-Interface data from the longest run of 2/22/2023
 interface_data1_path = r"/home/colton/Documents/GitHub/JetCat_Comms/data/2023-02-22/2023-02-22_T121427_data"
 
 interface_data1_frame = m1.bin_to_frame(interface_data1_path)
-print(interface_data1_frame)
+print(interface_data1_frame.head())
+
+plt.figure()
+plt.plot(interface_data1_frame['Sequence Number'])
+plt.figure()
+plt.plot(interface_data1_frame['RPM (actual)'])
+plt.figure()
+plt.plot(interface_data1_frame['RPM (actual)'].diff())
+
+# From log files and sequence plot, find the sampling rate:
+print("Sampling rate: ", end="")
+print(("{0:.3f}".format((10243-2624)/(1677087474.0343964-1677086374.0343955))))
+
+
+# Get smallest change in RPM measured over the entire frame:
+d1_rpm_diff = interface_data1_frame['RPM (actual)'].diff()
+d1_rpm_resolution = d1_rpm_diff[d1_rpm_diff>0].min()
+print("Smallest RPM difference: ", end="")
+print("{0:.8f}".format(d1_rpm_resolution))
+
+# Get smallest change in EGT measured over the entire frame:
+d1_egt_diff = interface_data1_frame['EGT'].diff()
+d1_egt_resolution = d1_egt_diff[d1_egt_diff>0].min()
+print("Smallest EGT difference: ", end="")
+print("{0:.8f}".format(d1_egt_resolution))
+
+
+
+
+
+
+
+
+# plt.show()
