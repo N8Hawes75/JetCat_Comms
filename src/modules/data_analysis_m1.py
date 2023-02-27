@@ -9,7 +9,9 @@ import pandas as pd
 from cffi import FFI
 from _crc.lib import pi_approx, get_crc16z
 import struct
-
+import os
+import matplotlib.pyplot as plt
+import datetime
 
 ffibuilder = FFI()
 
@@ -17,7 +19,6 @@ ffibuilder = FFI()
 
 
 def bin_to_frame(data_file_path):
-    print("Hello!")
 
     with open(data_file_path, 'rb',) as file:
         my_bytes = file.read()
@@ -41,7 +42,7 @@ def bin_to_frame(data_file_path):
                 # print("Datastring: ", datastring)
                 # print("len(datastring)", len(datastring))
                 data = ffibuilder.new("char[]", datastring)
-                crc16_calculation = get_crc16z(data, len(datastring))
+                crc16_calculation = get_crc16z(data, len(datastring)-2)
 
                 # Unstuff the data packet for processing
                 # print(i)
@@ -57,6 +58,7 @@ def bin_to_frame(data_file_path):
                     list_of_list.append(decoded_numbers)
                 else:
                     print("Error, wrong length at i =", i)
+                    print("Broken packet: ", unstuffed_line)
                 i=j
 
             else:
@@ -177,3 +179,18 @@ def decode_line(byte_array):
     # print("values        : ", values)
 
     return values
+
+def save_fig(fig_id, folder_descrip , tight_layout=True,\
+    fig_extension="png", resolution=600):
+
+    now = datetime.datetime.today()
+    now = now.strftime("%Y-%m-%d")
+    IMAGES_PATH = os.path.join(".", "images", now, folder_descrip)
+    os.makedirs(IMAGES_PATH, exist_ok=True)
+    fig_id = now + "_" + fig_id
+    path = os.path.join(IMAGES_PATH, fig_id + " " +\
+            folder_descrip + "." + fig_extension)
+    # print("Saving figure", fig_id)
+    if tight_layout:
+        plt.tight_layout()
+    plt.savefig(path, format=fig_extension, dpi=resolution)
