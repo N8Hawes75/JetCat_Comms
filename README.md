@@ -44,6 +44,26 @@ Put at least a 90 after startup so that the engine has time to idle
 
 The program will create a binary file to save PRO-Interface data, and a text file to save the throttle curve and output commands. If a samsung T7 is plugged into your computer it will back up the files to your external ssd. Believe this script should be ran as sudo, but it works without it sometimes. Just run as sudo.
 
+## make_csvs.sh
+
+Bash script to take all of the PRO-Interface, E-TC, and USB-6210 data in a folder and convert to .csv and .pickle files. It will save the .csv's in the same folder they were found in, and it searches all the subdirectories inside a folder. Don't use with any bin files that are empty. Double check it works. An example run is:
+
+    bash ./src/make_csvs.sh ~/Documents/2023-02-22_JetCat_Test/
+    Processing file: ./interface/2023-02-22_T121427_data.bin
+    Processing file: ./interface/2023-02-22_T132715_data.bin
+    Processing file: ./interface/2023-02-22_T114204_data.bin
+    Processing file: ./interface/2023-02-22_T131842_data.bin
+    Processing file: ./interface/2023-02-22_T132509_data.bin
+    Processing file: ./signal_express/02222023_110927_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_105658_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_110441_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_012732_PM/Voltage.tdms
+    Processing file: ./signal_express/02222023_110020_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_110704_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_114909_AM/Voltage.tdms
+    Processing file: ./signal_express/02222023_121544_PM/Voltage.tdms
+    Processing file: ./signal_express/02222023_011948_PM/Voltage.tdms
+
 ## throttle_cmd_1.py *DEPRECATED*
 
 This program is for sending throttle commands to the PRO-Interface while also logging all the data from the serial port. The commands are received through a .txt file that follows this format:
