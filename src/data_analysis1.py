@@ -30,9 +30,10 @@ plt.plot(d1['Battery Volts'])
 plt.figure()
 plt.plot(d1['RPM (actual)'].diff())
 plt.figure()
-plt.plot(d1['CRC16_Given'].equals(d1['CRC16_Calculated']))
+plt.plot(d1['CRC16_Given'], 'o')
+plt.figure()
+plt.plot(d1['CRC16_Calculated'], 'o')
 
-print(d1['CRC16_Given'].equals(d1['CRC16_Calculated']))
 
 # From log files and sequence plot, find the sampling rate:
 print("Sampling rate: ", end="")
