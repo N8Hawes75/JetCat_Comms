@@ -125,36 +125,38 @@ def decode_line(byte_array):
     documentation
     """
 
-    engine_address = byte_array[0] # Address of engine to be accessed
-    message_description = byte_array[1] << 8 | byte_array[2]
-    sequence_number = byte_array[3]
-    data_byte_count = byte_array[4]
+    # Old worse way of doing things
+    # engine_address = byte_array[0] # Address of engine to be accessed
+    # message_description = byte_array[1] << 8 | byte_array[2]
+    # sequence_number = byte_array[3]
+    # data_byte_count = byte_array[4]
 
-    setpoint_rpm = (byte_array[5] << 8 | byte_array[6])*10
-    setpoint_rpm_percent = (byte_array[7] << 8 | byte_array[8])*.01
-    actual_rpm = (byte_array[9] << 8 | byte_array[10])*10
-    actual_rpm_percent = (byte_array[11] << 8 | byte_array[12])*.01
-    exhaust_gas_temp = (byte_array[13] << 8 | byte_array[14])*.1
-    setpoint_pump_volts = (byte_array[15] << 8 | byte_array[16])*.01
-    actual_pump_volts = (byte_array[17] << 8 | byte_array[18])*.01
-    state = (byte_array[19])
-    battery_volts = (byte_array[20] << 8 | byte_array[21])*.01
-    battery_volts_percent = (byte_array[22])*.5
-    battery_current = (byte_array[23] << 8 | byte_array[24])*.01
-    airspeed = (byte_array[25] << 8 | byte_array[26])*.1
-    pwm_thr = (byte_array[27] << 8 | byte_array[28])*.1
-    pwm_aux = (byte_array[29] << 8 | byte_array[30])*.1
-    crc16 = (byte_array[31] << 8 | byte_array[32])
+    # setpoint_rpm = (byte_array[5] << 8 | byte_array[6])*10
+    # setpoint_rpm_percent = (byte_array[7] << 8 | byte_array[8])*.01
+    # actual_rpm = (byte_array[9] << 8 | byte_array[10])*10
+    # actual_rpm_percent = (byte_array[11] << 8 | byte_array[12])*.01
+    # exhaust_gas_temp = (byte_array[13] << 8 | byte_array[14])*.1
+    # setpoint_pump_volts = (byte_array[15] << 8 | byte_array[16])*.01
+    # actual_pump_volts = (byte_array[17] << 8 | byte_array[18])*.01
+    # state = (byte_array[19])
+    # battery_volts = (byte_array[20] << 8 | byte_array[21])*.01
+    # battery_volts_percent = (byte_array[22])*.5
+    # battery_current = (byte_array[23] << 8 | byte_array[24])*.01
+    # airspeed = (byte_array[25] << 8 | byte_array[26])*.1
+    # pwm_thr = (byte_array[27] << 8 | byte_array[28])*.1
+    # pwm_aux = (byte_array[29] << 8 | byte_array[30])*.1
+    # crc16 = (byte_array[31] << 8 | byte_array[32])
 
-    decoded_packet = [engine_address, message_description, sequence_number,
-    data_byte_count, setpoint_rpm, setpoint_rpm_percent, actual_rpm,
-    actual_rpm_percent, exhaust_gas_temp, setpoint_pump_volts,
-    actual_pump_volts, state, battery_volts, battery_volts_percent,
-    battery_current, airspeed, pwm_thr, pwm_aux, crc16]
+    # decoded_packet = [engine_address, message_description, sequence_number,
+    # data_byte_count, setpoint_rpm, setpoint_rpm_percent, actual_rpm,
+    # actual_rpm_percent, exhaust_gas_temp, setpoint_pump_volts,
+    # actual_pump_volts, state, battery_volts, battery_volts_percent,
+    # battery_current, airspeed, pwm_thr, pwm_aux, crc16]
 
     byte_format = ">BHBB HHHHHHHBHBHHHH H"
     values = struct.unpack(byte_format, byte_array)
     values = list(values)
+
 
     # Apply scaling factors to the appropriate fields
     values[4] *= 10  # setpoint_rpm
@@ -164,13 +166,14 @@ def decode_line(byte_array):
     values[8] *= 0.1  # exhaust_gas_temp
     values[9] *= 0.01  # setpoint_pump_volts
     values[10] *= 0.01  # actual_pump_volts
-    values[14] *= 0.5  # battery_volts_percent
-    values[15] *= 0.01  # battery_current
-    values[16] *= 0.1  # airspeed
-    values[17] *= 0.1  # pwm_thr
-    values[18] *= 0.1  # pwm_aux
+    values[12] *= 0.01 # Battery Volts
+    values[13] *= 0.5 # Battery avolt level %
+    values[14] *= 0.01 # Battery current
+    values[15] *= 0.1 # Airspeed
+    values[16] *= 0.1 # PWM-THR Channel
+    values[17] *= 0.1 # PWM-AUX Channel
 
     # print("decoded_packet: ", decoded_packet)
-    # print("values: ", values)
+    # print("values        : ", values)
 
-    return decoded_packet
+    return values
