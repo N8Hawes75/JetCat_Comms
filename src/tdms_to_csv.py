@@ -14,7 +14,6 @@ import modules.data_analysis_m1 as m1
 
 
 file_path = sys.argv[1] # Full path to file
-# file_path = r"/media/colton/T7/JetCat_Data/2023-02-22_JetCat_Test/signal_express/02222023_011948_PM/Voltage.tdms"
 
 frame = m1.tdms_to_frame(file_path)
 
