@@ -12,6 +12,9 @@ import struct
 import os
 import matplotlib.pyplot as plt
 import datetime
+from nptdms import TdmsFile
+from nptdms import tdms
+
 
 ffibuilder = FFI()
 
@@ -56,9 +59,9 @@ def bin_to_frame(data_file_path):
                     decoded_numbers = decode_line(unstuffed_line)
                     decoded_numbers.append(crc16_calculation)
                     list_of_list.append(decoded_numbers)
-                else:
-                    print("Error, wrong length at i =", i)
-                    print("Broken packet: ", unstuffed_line)
+                # else:
+                    # print("Error, wrong length at i =", i)
+                    # print("Broken packet: ", unstuffed_line)
                 i=j
 
             else:
@@ -127,38 +130,9 @@ def decode_line(byte_array):
     documentation
     """
 
-    # Old worse way of doing things
-    # engine_address = byte_array[0] # Address of engine to be accessed
-    # message_description = byte_array[1] << 8 | byte_array[2]
-    # sequence_number = byte_array[3]
-    # data_byte_count = byte_array[4]
-
-    # setpoint_rpm = (byte_array[5] << 8 | byte_array[6])*10
-    # setpoint_rpm_percent = (byte_array[7] << 8 | byte_array[8])*.01
-    # actual_rpm = (byte_array[9] << 8 | byte_array[10])*10
-    # actual_rpm_percent = (byte_array[11] << 8 | byte_array[12])*.01
-    # exhaust_gas_temp = (byte_array[13] << 8 | byte_array[14])*.1
-    # setpoint_pump_volts = (byte_array[15] << 8 | byte_array[16])*.01
-    # actual_pump_volts = (byte_array[17] << 8 | byte_array[18])*.01
-    # state = (byte_array[19])
-    # battery_volts = (byte_array[20] << 8 | byte_array[21])*.01
-    # battery_volts_percent = (byte_array[22])*.5
-    # battery_current = (byte_array[23] << 8 | byte_array[24])*.01
-    # airspeed = (byte_array[25] << 8 | byte_array[26])*.1
-    # pwm_thr = (byte_array[27] << 8 | byte_array[28])*.1
-    # pwm_aux = (byte_array[29] << 8 | byte_array[30])*.1
-    # crc16 = (byte_array[31] << 8 | byte_array[32])
-
-    # decoded_packet = [engine_address, message_description, sequence_number,
-    # data_byte_count, setpoint_rpm, setpoint_rpm_percent, actual_rpm,
-    # actual_rpm_percent, exhaust_gas_temp, setpoint_pump_volts,
-    # actual_pump_volts, state, battery_volts, battery_volts_percent,
-    # battery_current, airspeed, pwm_thr, pwm_aux, crc16]
-
     byte_format = ">BHBB HHHHHHHBHBHHHH H"
     values = struct.unpack(byte_format, byte_array)
     values = list(values)
-
 
     # Apply scaling factors to the appropriate fields
     values[4] *= 10  # setpoint_rpm
@@ -177,8 +151,61 @@ def decode_line(byte_array):
 
     # print("decoded_packet: ", decoded_packet)
     # print("values        : ", values)
-
     return values
+
+def tdms_to_frame(file_path):
+    tdms_data = TdmsFile.read(file_path)
+
+    for group in tdms_data.groups():
+        # Determine if this is a thermocouple (MCCDAQ) or Load Cell (NI DAQ) TDMSVoltage.tdms
+        if group.name == "Analog":
+            file_type = "MCC"
+        else:
+            file_type = "NI"
+
+    if file_type == "MCC":
+        # print("MCCDAQ TDMS file found...")
+        mcc_group1 = tdms_data["Analog"]
+        mcc_timechannel = mcc_group1["TimeStamps"]
+        mcc_tempchannel1 = mcc_group1["AI0"]
+        mcc_tempchannel2 = mcc_group1["AI1"]
+        mcc_tempchannel3 = mcc_group1["AI2"]
+        # These are numpy ndarrays
+        mcc_time = mcc_timechannel[:]
+        mcc_temp1 = mcc_tempchannel1[:]
+        mcc_temp2 = mcc_tempchannel2[:]
+        mcc_temp3 = mcc_tempchannel3[:]
+        frame = pd.DataFrame({'Time [s]': mcc_time,
+                              'AI0': mcc_temp1,
+                              'AI1': mcc_temp2,
+                              'AI2': mcc_temp3})
+        return frame
+
+    elif file_type == "NI":
+        # print("NI TDMS file found...")
+        
+        ni_groups = tdms_data.groups()
+        group_names = []
+        for group in ni_groups:
+            group_names.append(group.name)
+        # print("NI group names: ")
+        # print(group_names, "\n")
+
+        ni_group1 = tdms_data[group_names[0]]
+        ni_g1_allchannels = ni_group1.channels()
+        channel_names = []
+        for channel in ni_g1_allchannels:
+            channel_names.append(channel.name)
+        # print("NI channel names: ")
+        # print(channel_names, "\n")
+        ni_g1_chan1 = ni_group1[channel_names[0]]
+
+        # These are numpy ndarrays
+        ni_g1_ai0_time = ni_g1_chan1.time_track()
+        ni_g1_ai0_v = ni_g1_chan1[:]
+        frame = pd.DataFrame({'Time [s]': ni_g1_ai0_time,
+                              'Voltage': ni_g1_ai0_v})
+        return frame
 
 def save_fig(fig_id, folder_descrip , tight_layout=True,\
     fig_extension="png", resolution=600):

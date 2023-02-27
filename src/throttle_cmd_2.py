@@ -19,7 +19,7 @@ import time
 import modules.throttle_help as throttle_help
 
 # Create log filename
-data_filename = throttle_help.make_filename("data")
+data_filename = throttle_help.make_filename("data.bin")
 # Create 
 log_filename = throttle_help.make_filename("log.txt")
 

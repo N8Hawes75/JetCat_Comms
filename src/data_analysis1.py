@@ -25,7 +25,6 @@ d1 = m1.bin_to_frame(interface_data1_path)
 d2 = m1.bin_to_frame(interface_data2_path)
 d3 = m1.bin_to_frame(interface_data3_path)
 d4 = m1.bin_to_frame(interface_data4_path)
-
 frame_list = [d0,d1,d2,d3,d4]
 
 for i, frame in zip(range(len(frame_list)), frame_list):
@@ -62,8 +61,11 @@ d1_egt_resolution = d1_egt_diff[d1_egt_diff>0].min()
 print("Smallest EGT difference: ", end="")
 print("{0:.8f}".format(d1_egt_resolution))
 
-
-
+d0.to_csv("2023-02-22_T114204_data.csv")
+d1.to_csv("2023-02-22_T121427_data.csv")
+d2.to_csv("2023-02-22_T131809_data.csv")
+d3.to_csv("2023-02-22_T131842_data.csv")
+d4.to_csv("2023-02-22_T132715_data.csv")
 
 
 
