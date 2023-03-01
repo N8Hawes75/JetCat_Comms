@@ -4,20 +4,18 @@ Created Repo on 11/11/2022
 
 ## Setup Help
 
-```
-sudo apt-get install python-dev libxml2-dev libxslt-dev
-```
+    sudo apt-get install python-dev libxml2-dev libxslt-dev
 
 Ubuntu also required dev tools for c to be installed for FCCI to work. Run
-```
-sudo apt-get update && sudo apt-get install build-essential
-```
+
+    sudo apt-get update && sudo apt-get install build-essential
 
 To save Matplotlib animations you must install ffmpeg in ubuntu terminal
-```
-sudo apt install ffmpeg
-```
+
+    sudo apt install ffmpeg
+
 Other modules included in `requirements.txt`. Really it's numpy pandas matplotlib pyserial and cffi.
+
 
 ### CFFI
 
@@ -26,6 +24,7 @@ To run cffi, you need to run `main.py` inside the main `JetCat_Comms` directory 
 This is a bit of a mess right now. Run `main.py` to create the python .so library, then put that library in the same folder as the source code you're going to run, `import _crc.lib`
 
 The cffi library is currently only working on Linux. Not sure how to get it to work on windows, but it's something to do with the compiler.
+
 
 ## throttle_cmd_2.py
 
@@ -43,6 +42,7 @@ This program is for sending throttle commands to the PRO-Interface while also lo
 Put at least a 90 after startup so that the engine has time to idle
 
 The program will create a binary file to save PRO-Interface data, and a text file to save the throttle curve and output commands. If a samsung T7 is plugged into your computer it will back up the files to your external ssd. Believe this script should be ran as sudo, but it works without it sometimes. Just run as sudo.
+
 
 ## make_csvs.sh
 
@@ -64,11 +64,14 @@ Bash script to take all of the PRO-Interface, E-TC, and USB-6210 data in a folde
     Processing file: ./signal_express/02222023_121544_PM/Voltage.tdms
     Processing file: ./signal_express/02222023_011948_PM/Voltage.tdms
 
+
 ## make_plots.sh
 
 Bash script to take all of the PRO-Interface, E-TC, and USB-6210 csv's in a folder and plot. This can only be ran after make_csvs.sh is ran. The png files are saved in the same location as the data. 
 
+
 ### TODO: 
+
 Edit `make_csvs.sh`, `make_plots.sh`, and `throttle_cmd_2.py` so that PRO-Interface data is saved in this format:
 
     interface/
@@ -98,6 +101,7 @@ Edit `make_csvs.sh`, `make_plots.sh`, and `throttle_cmd_2.py` so that PRO-Interf
             ├── RPM_(setpoint).png
             ├── Sequence_Number.png
             └── State.png
+
 And USB-6210 data will look like this:
 
     signal_express/
@@ -109,9 +113,6 @@ And USB-6210 data will look like this:
     │   ├── Voltage.pickle
     │   ├── Voltage.tdms
     │   └── Voltage.tdms_index
-
-
-
 
 
 ## Virtual serial port for testing
@@ -140,28 +141,30 @@ To see the serial command data in binary.
 These instructions come from [stack overflow](https://stackoverflow.com/questions/52187/virtual-serial-port-for-linux)
 
 
-## TODO:
+## General TODO:
 
 - `throttle_cmd_2.py` and `read_port.py`: Timestamps with the processed data somehow? Save to another file while also saving the PRO-Interface data to a file? There should be a time column in the `./decoded_data/XXXX-XX-XX/XXXX.csv` data files
 - CFFI on Windows?
 
+
 ## throttle_cmd_1.py *DEPRECATED*
 
 This program is for sending throttle commands to the PRO-Interface while also logging all the data from the serial port. The commands are received through a .txt file that follows this format:
-```
-Time, Throttle_RPM
-0,0
-45,34000
-100,100000
-120,34000
-180,0
-```
+
+    Time, Throttle_RPM
+    0,0
+    45,34000
+    100,100000
+    120,34000
+    180,0
+
 
 ### throttle_cmd_1.py Run Tips
 
 You need at least ~40-45 seconds between your START command and the first set engine RPM command. I tested the program with the simulate engine mode and it works. If you change the RPM on the GSU, the next RPM command just overwrites your change. If you shut the engine down on the GSU, it will remain off while new RPM commands are being sent.
 
 The engine should be primed with the GSU before this program is ran so that it has fuel and quickly allows RPM commands.
+
 
 ### throttle_cmd_1.py General Notes
 
