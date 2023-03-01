@@ -11,6 +11,7 @@ import pandas as pd
 import sys
 import os
 import matplotlib.pyplot as plt
+import modules.data_analysis_m1 as m1
 
 
 folder_path = sys.argv[1] # Full path to file
@@ -68,6 +69,7 @@ plt.xlabel("Weight [lb]")
 plt.ylabel("Voltage [V]")
 plt.title("Calibration Curve")
 plt.grid(True)
+m1.save_fig2(folder_path, "Calibration_Curve")
 plt.show()
 
 
