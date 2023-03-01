@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Start timer
+start=$(date +%s.%N)
+
 # activate virtual environment
 source /home/colton/Documents/GitHub/JetCat_Comms/.venv/bin/activate
 
@@ -23,3 +26,10 @@ done
 
 # deactivate virtual environment
 deactivate
+
+# End timer
+end=$(date +%s.%N)
+runtime=$(echo "$end - $start" | bc)
+
+# Print the runtime
+echo "Runtime: $runtime seconds"
