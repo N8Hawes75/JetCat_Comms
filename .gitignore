@@ -1,3 +1,10 @@
+# Ignore data folders
+.venv/
+data/
+decoded_data/
+images/
+anims/
+
 # Python & C .gitignore put together
 _crc.c
 
