@@ -1,5 +1,6 @@
 # Ignore data folders
 .venv/
+.vscode/
 data/
 decoded_data/
 images/
