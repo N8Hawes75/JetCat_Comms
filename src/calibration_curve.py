@@ -19,6 +19,8 @@ files = []
 frames = []
 weights_used = []
 val_weights = []
+
+# Change this when you actually measure the weights
 values = {"40aF": 40.001,
           "40bF": 39.999,
           "35aF": 35.001,
@@ -26,7 +28,6 @@ values = {"40aF": 40.001,
           "40bR": -39.999,
           "35aR": -35.001
           }
-
 
 for file_name in os.listdir(folder_path):
     file_path = os.path.join(folder_path, file_name)
@@ -48,10 +49,10 @@ for file in sorted_files:
 for expr in weights_used:
     for var, val in values.items():
         expr = expr.replace(var, str(val))
-        print(expr)
+        # print(expr)
     value = eval(expr)
     val_weights.append(value)
-print(val_weights)
+# print(val_weights)
 
 
 x = np.zeros((len(val_weights)))
@@ -60,15 +61,29 @@ for i in range(len(val_weights)):
     x[i] = val_weights[i]
     y[i] = frames[i]["Voltage"].mean()
 
+# We have the data points now. Just get linear least squares of the data:
+
+A = np.vstack([x, np.ones(len(x))]).T
+slope, constant = np.linalg.lstsq(A, y, rcond=None)[0]
+
+# Print to terminal. Print so that we can figure out if the data is okay
+np.set_printoptions(suppress=True)
+print("Value of weights hung from load cell in order:", np.round(x, decimals=6))
+print("Mean Voltage read from load cell for those weights:", np.round(y, decimals=6))
+
+print("Line of best fit: y="+str(slope)+"x+"+str(constant))
+
 labels = range(1, len(val_weights)+1)
 fig, ax = plt.subplots()
-ax.plot(x, y)
+ax.plot(x, y, 'bo', label="Data Points")
 for i, txt in enumerate(labels):
     ax.annotate(txt, (x[i], y[i]))
 plt.xlabel("Weight [lb]")
 plt.ylabel("Voltage [V]")
 plt.title("Calibration Curve")
 plt.grid(True)
+plt.plot(x, slope*x+constant, 'r-', label="Fitted Line")
+plt.legend()
 m1.save_fig2(folder_path, "Calibration_Curve")
 plt.show()
 
