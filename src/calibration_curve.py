@@ -55,11 +55,9 @@ for expr in weights_used:
 # print(val_weights)
 
 
-x = np.zeros((len(val_weights)))
-y = np.zeros((len(val_weights)))
-for i in range(len(val_weights)):
-    y[i] = val_weights[i]
-    x[i] = frames[i]["Voltage"].mean()
+
+x = np.array([frame["Voltage"].mean() for frame in frames])
+y = np.array(val_weights)
 
 # We have the data points now. Just get linear least squares of the data:
 
