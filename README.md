@@ -67,8 +67,7 @@ Bash script to take all of the PRO-Interface, E-TC, and USB-6210 data in a folde
 
 ## make_plots.sh
 
-Bash script to take all of the PRO-Interface, E-TC, and USB-6210 csv's in a folder and plot. This can only be ran after make_csvs.sh is ran. The png files are saved in the same location as the data. 
-
+Bash script to take all of the PRO-Interface, E-TC, and USB-6210 csv's in a folder and plot. This can only be ran after make_csvs.sh is ran. The png files are saved in the same location as the data. Run the script with the full path to the directory, `bash ./src/make_plots.sh ~/Documents/GitHub/JetCat_Comms/data/2023-02-22_JetCat_Test/`
 
 ### TODO: 
 
@@ -113,6 +112,30 @@ And USB-6210 data will look like this:
     │   ├── Voltage.pickle
     │   ├── Voltage.tdms
     │   └── Voltage.tdms_index
+
+## make_calibration_curve.sh
+
+Bash script to generate calibration curve from cal data. Point to a folder that has the calibration data stored inside. Any number of calibration points can be used as long as the data is saved in the correct format. Example run:
+
+    bash ./src/make_calibration_curve.sh ~/Documents/GitHub/JetCat_Comms/data/2023-02-22_Calibration_Data/
+    Value of weights hung from load cell in order: [ 40.001 -40.001  -0.002  75.     39.999]
+    Mean Voltage read from load cell for those weights: [ 3.552042 -3.872265 -0.70692   4.662902  4.345449]
+    Line of best fit: y=11.374741681747047x+4.842564866216753
+    Mean Squared Error (MSE) of best fit: 107.01666638376491
+    Saving plots to  /home/colton/Documents/GitHub/JetCat_Comms/data/2023-02-22_Calibration_Data/images/Calibration_Curve.png
+    Runtime: .961804197 seconds
+
+ The folder you are pointing to will look like this:
+
+    ./data/2023-02-22_Calibration_Data/
+    ├── 1_40aF.csv
+    ├── 2_40aR.csv
+    ├── 3_40aR_40bF.csv
+    ├── 4_40bF_35aF.csv
+    ├── 5_40bF.csv
+    └── images
+        └── Calibration_Curve.png
+
 
 
 ## Virtual serial port for testing

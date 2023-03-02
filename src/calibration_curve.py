@@ -67,14 +67,11 @@ A = np.vstack([x, np.ones(len(x))]).T
 slope, constant = np.linalg.lstsq(A, y, rcond=None)[0]
 y_predict = slope*x+constant
 
-print(y_predict)
-
-
 MSE = np.square(np.subtract(y, y_predict)).mean() # Take mean of square of difference
 # Print to terminal. Print so that we can figure out if the data is okay
 np.set_printoptions(suppress=True)
-print("Value of weights hung from load cell in order:", np.round(x, decimals=6))
-print("Mean Voltage read from load cell for those weights:", np.round(y, decimals=6))
+print("Value of weights hung from load cell in order:", np.round(y, decimals=6))
+print("Mean Voltage read from load cell for those weights:", np.round(x, decimals=6))
 
 print("Line of best fit: y="+str(slope)+"x+"+str(constant))
 print("Mean Squared Error (MSE) of best fit:", MSE)
@@ -92,7 +89,7 @@ plt.grid(True)
 plt.plot(x, slope*x+constant, 'r-', label="Fitted Line")
 plt.legend()
 m1.save_fig2(folder_path, "Calibration_Curve")
-plt.show()
+# plt.show()
 
 
 
