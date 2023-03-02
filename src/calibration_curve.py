@@ -58,28 +58,35 @@ for expr in weights_used:
 x = np.zeros((len(val_weights)))
 y = np.zeros((len(val_weights)))
 for i in range(len(val_weights)):
-    x[i] = val_weights[i]
-    y[i] = frames[i]["Voltage"].mean()
+    y[i] = val_weights[i]
+    x[i] = frames[i]["Voltage"].mean()
 
 # We have the data points now. Just get linear least squares of the data:
 
 A = np.vstack([x, np.ones(len(x))]).T
 slope, constant = np.linalg.lstsq(A, y, rcond=None)[0]
+y_predict = slope*x+constant
 
+print(y_predict)
+
+
+MSE = np.square(np.subtract(y, y_predict)).mean() # Take mean of square of difference
 # Print to terminal. Print so that we can figure out if the data is okay
 np.set_printoptions(suppress=True)
 print("Value of weights hung from load cell in order:", np.round(x, decimals=6))
 print("Mean Voltage read from load cell for those weights:", np.round(y, decimals=6))
 
 print("Line of best fit: y="+str(slope)+"x+"+str(constant))
+print("Mean Squared Error (MSE) of best fit:", MSE)
+
 
 labels = range(1, len(val_weights)+1)
 fig, ax = plt.subplots()
 ax.plot(x, y, 'bo', label="Data Points")
 for i, txt in enumerate(labels):
     ax.annotate(txt, (x[i], y[i]))
-plt.xlabel("Weight [lb]")
-plt.ylabel("Voltage [V]")
+plt.xlabel("Voltage [V]")
+plt.ylabel("Weight [lb]")
 plt.title("Calibration Curve")
 plt.grid(True)
 plt.plot(x, slope*x+constant, 'r-', label="Fitted Line")
