@@ -136,7 +136,26 @@ Bash script to generate calibration curve from cal data. Point to a folder that 
     └── images
         └── Calibration_Curve.png
 
+## calibrate_load_cell.py
 
+Run this program to recieve prompts on what weights to hang from the load cell for calibration, tell the computer when the weights are hung, and automatically sample the load cell for a certain period of time, saving the files together in the correct format so that calibration_curve.py can generate the curves for you right after calibration.
+
+ONLY RUNS ON WINDOWS!
+
+You have to download NIDAQmxBASE, NIDAQmx, and run `pip install nidaqmx` for this to work.
+
+- Install: [NIDAQmx](https://www.ni.com/en-us/support/downloads/drivers/download.ni-daq-mx.html#477807)
+- Install: [NIDAQmx Base](https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx-base.html#326059)
+- Python API: `pip install nidaqmx`
+
+Will save the samples as csv files in this format:
+
+    ./data/YYY-MM-DD_THHMMSS_Calibration_Data
+    ├── 1_40aF.csv
+    ├── 2_40aR.csv
+    ├── 3_40aR_40bF.csv
+    ├── 4_40bF_35aF.csv
+    ├── 5_40bF.csv
 
 ## Virtual serial port for testing
 
