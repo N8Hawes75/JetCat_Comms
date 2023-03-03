@@ -11,28 +11,31 @@ the curves for you right after calibration.
 
 import numpy as np
 import pandas as pd
+import datetime
 import nidaqmx
 import time
 
 import modules.m2 as m2
 
-n_samples = 100000 # Take 100k samples for each weight hanging
-sampling_rate = 10000 # USB-6210 peaks at 250000 kS/s
-data = np.array([])
-sample_times = np.linspace(0,n_samples/sampling_rate,n_samples)
-with nidaqmx.Task() as task:
-
-    task.ai_channels.add_ai_voltage_chan("Dev1/ai0")
-    task.timing.cfg_samp_clk_timing(sampling_rate, sample_mode=nidaqmx.constants.AcquisitionType.CONTINUOUS)
-    start = time.time()
-
-    n_samples_per_loop = 5000 # You cannot just shove 100k samples into a list
-    n_loop = int(n_samples/5000)
-    for i in range(n_loop):
-        reading = task.read(n_samples_per_loop, timeout=nidaqmx.constants.WAIT_INFINITELY)
-        data = np.append(data, reading)
-
-# print(data)
-print("Runtime:", (time.time()-start))
-print(len(data))
+# Change this when you actually measure the weights
+values = {"40aF": 40.001,
+          "40bF": 39.999,
+          "35aF": 35.001,
+          "40aR": -40.001,
+          "40bR": -39.999,
+          "35aR": -35.001
+          }
+now = datetime.datetime.today()
+now = now.strftime("%Y-%m-%d")
+weight_order = ("40aF", "40aR", "40aR_40bF", "40bF_35aF", "40bF")
+frames = []
+for i in range(len(weight_order)):
+    is_ready = m2.prompt_weight(weight_order[i])
+    if is_ready == 'y':
+        print("Collecting samples...")
+        frames.append(m2.collect_samples())
+        m2.save_frame(frames[i])
+    else:
+        break
+    print(i)
 

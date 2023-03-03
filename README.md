@@ -67,7 +67,7 @@ Bash script to take all of the PRO-Interface, E-TC, and USB-6210 data in a folde
 
 ## make_plots.sh
 
-Bash script to take all of the PRO-Interface, E-TC, and USB-6210 csv's in a folder and plot. This can only be ran after make_csvs.sh is ran. The png files are saved in the same location as the data. Run the script with the full path to the directory, `bash ./src/make_plots.sh ~/Documents/GitHub/JetCat_Comms/data/2023-02-22_JetCat_Test/`
+Bash script to take all the PRO-Interface, E-TC, and USB-6210 csv's in a folder and plot. This can only be ran after make_csvs.sh is ran. The .png files are saved in the same location as the data. Run the script with the full path to the directory, `bash ./src/make_plots.sh ~/Documents/GitHub/JetCat_Comms/data/2023-02-22_JetCat_Test/`
 
 ### TODO: 
 
