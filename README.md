@@ -211,3 +211,7 @@ The engine should be primed with the GSU before this program is ran so that it h
 ### throttle_cmd_1.py General Notes
 
 Byte stuffing is totally done. Timing used to be bad because I had `ser.read(100)` set, with a timeout of 2 seconds, so the program would just halt at the read statement and wait for 100 bytes for 2 seconds. Fixed this with `ser.read(ser.in_waiting)`.
+
+## Make a Movie
+
+Requested RPM, Actual RPM EGT, Pump Volts battery volts, JSON files!
